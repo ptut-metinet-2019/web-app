@@ -1,0 +1,17 @@
+<div id="mainQuestionList">
+  <div>
+    Mes questions
+  </div>
+  <ng-container *ngIf="questionnaire != undefined">
+    <ng-container *ngFor="let question of questionnaire.questions">
+      <div (click)="selectQuestion(question)">
+        <span class="questionnaireLabel">{{question.name.value}}</span>
+      </div>
+    </ng-container>
+    <button (click)="addQuestion()">+ Nouveau</button>
+  </ng-container>
+</div>
+
+<div id="mainQuestion">
+  <question *ngIf="selectedQuestion != undefined" [question]="selectedQuestion"></question>
+</div>

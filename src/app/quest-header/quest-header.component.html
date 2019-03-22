@@ -1,0 +1,11 @@
+<div id="mainQuestHeader">
+  <ng-container *ngIf="questionnaire != undefined">
+    <span *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false" class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
+    <input *ngIf="questionnaire.name.isModeEdit == true" type="text" [(ngModel)]="questionnaire.name.value">
+    <div class="nameButtons">
+      <button *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false" (click)="questionnaire.name.isModeEdit = true">Editer</button>
+      <button *ngIf="questionnaire.name.isModeEdit == true" (click)="questionnaire.name.isModeEdit = false">Sauvegarder</button>
+      <button (click)="deleteQuestionnaire()">Supprimer ce questionnaire</button>
+    </div>
+  </ng-container>
+</div>

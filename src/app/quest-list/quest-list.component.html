@@ -1,0 +1,18 @@
+<div id="mainQuestList">
+  <div>
+    Mes questionnaires
+  </div>
+  <ng-container *ngFor="let questionnaire of questionnairesList">
+    <div (click)="loadQuestionnaire(questionnaire)">
+      <span class="questionnaireLabel">{{questionnaire.name.value}}</span>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="addingNewQuestionnaire == true">
+    <input type="text" [(ngModel)]="newQuestionnaireName">
+    <button (click)="addNewQuestionnaire()">Valider</button>
+  </ng-container>
+  <button *ngIf="!addingNewQuestionnaire" (click)="addingNewQuestionnaire = true">+ Nouveau</button>
+</div>
+
+<quest-header [questionnaire]="selectedQuestionnaire"></quest-header>
+<question-list [questionnaire]="selectedQuestionnaire"></question-list>

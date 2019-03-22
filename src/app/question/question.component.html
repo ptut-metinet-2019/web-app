@@ -1,0 +1,31 @@
+<div id="mainQuestion">
+  <ng-container *ngIf="question != undefined && _parent.questionnaire != undefined && _parent.selectedQuestion == question">
+    <span *ngIf="question.name.isModeEdit == false" class="propositionLabel">{{question.name.value}}</span>
+    <input *ngIf="question.name.isModeEdit == true" type="text" [(ngModel)]="question.name.value">
+    <div class="nameButtons">
+      <button *ngIf="question.name.isModeEdit == false" (click)="question.name.isModeEdit = true">Editer</button>
+      <button *ngIf="question.name.isModeEdit == true" (click)="question.name.isModeEdit = false">Sauvegarder</button>
+      <button (click)="deleteQuestion()">Supprimer cette question</button>
+    </div>
+
+    Timer :
+    <span *ngIf="question.timer.isModeEdit == false" class="propositionLabel">{{question.timer.value}}</span>
+    <input *ngIf="question.timer.isModeEdit == true" type="text" [(ngModel)]="question.timer.value">
+    <div class="timerButtons">
+      <button *ngIf="question.timer.isModeEdit == false" (click)="question.timer.isModeEdit = true">Editer</button>
+      <button *ngIf="question.timer.isModeEdit == true" (click)="question.timer.isModeEdit = false">Sauvegarder</button>
+    </div>
+
+    <ng-container *ngFor="let proposition of question.propositions">
+      <div class="propositionDiv">
+        <span *ngIf="proposition.isModeEdit == false" class="propositionLabel">{{proposition.label}}</span>
+        <input *ngIf="proposition.isModeEdit == true" type="text" [(ngModel)]="proposition.label">
+        <div class="propositionButtons">
+          <button *ngIf="proposition.isModeEdit == false" (click)="proposition.isModeEdit = true">Editer</button>
+          <button *ngIf="proposition.isModeEdit == true" (click)="proposition.isModeEdit = false">Sauvegarder</button>
+        </div>
+      </div>
+      <button (click)="deleteProposition(proposition)">Supprimer</button>
+    </ng-container>
+    <button (click)="addProposition()">+ Ajouter une question</button>
+  </ng-container>
