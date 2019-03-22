@@ -1,0 +1,52 @@
+.loginPageTitle {
+  text-align: center;
+}
+
+.loginMenu {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.loginFlex, .registerFlex {
+  width: 40%;
+  margin: 0;
+  margin-left: 5%;
+  margin-left: 5%;
+}
+
+.loginForm, .registerForm, .loginMenuTitle, .registerMenuTile {
+  margin-top: 50px;
+  text-align: center;
+
+}
+.loginForm, .registerForm{
+  border: black solid 2px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.mailLabel, .mailInput, .passwordLabel, .passwordInput, .validationInput, .confirmPasswordInput, .confirmPasswordLabel {
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.error{
+  color: red;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .loginFlex, .registerFlex {
+    width: 80%;
+    margin: 0;
+    margin-left: 10%;
+    margin-left: 10%;
+  }
+}
+@media (max-width: 300px) {
+  .loginFlex, .registerFlex {
+    width: 100%;
+    margin: 0;
+  }
+}

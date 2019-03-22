@@ -1,0 +1,33 @@
+<script src="path/to/angular.js"></script>
+<script src="path/to/angular-messages.js"></script>
+<h1 class="loginPageTitle">Bienvenue sur SMS-Vote</h1>
+<div class="loginMenu">
+  <div class="loginFlex">
+    <h2 class="loginMenuTitle">Se connecter</h2>
+    <form class="registerForm" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+      <label class="mailLabel">E-mail</label><br>
+      <input name="email" formControlName="loginEmail" class="mailInput" required><br>
+      <label class="passwordLabel">Mot de passe</label><br>
+      <input type="password" formControlName="loginPassword" name="password" class="passwordInput" required><br>
+      <button type="submit" [disabled]="!loginForm.valid">Submit</button>
+      <div class="error invalidCredentialsError"*ngIf="invalidCredentialsError">Email ou mot de passe invalide</div>
+    </form>
+  </div>
+  <div class="registerFlex">
+    <h2 class="loginMenuTitle">S'enregistrer</h2>
+    <form class="loginForm" [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+      <label class="mailLabel">E-mail</label><br>
+      <input name="email" formControlName="registerEmail" class="mailInput" required><br>
+      <label class="passwordLabel">Mot de passe</label><br>
+      <label class="authorizePasswordCharacters">( A-Z a-z 0-9 - _ . ! ~ * ' ( ) )</label><br>
+      <input type="password" formControlName="registerPassword" name="password" class="passwordInput" required><br>
+      <label class="confirmPasswordLabel">Confirmer le mot de passe</label><br>
+      <input type="password" name="confirmPassword" formControlName="registerConfirmPassword"
+             class="confirmPasswordInput" required><br>
+      <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+      <div class="error confirmPasswordError"*ngIf="confirmPasswordError">Les mots de passe ne correspondent pas</div>
+    </form>
+  </div>
+</div>
+<div class="registerMenu"></div>
+
