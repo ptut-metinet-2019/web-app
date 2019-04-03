@@ -1,10 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LoginPageComponent} from './loginPage/loginPage.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FooterComponent} from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 
 import { MainPageComponent } from './main-page/main-page.component';
@@ -16,11 +16,13 @@ import { QuestionComponent } from './main-page/question/question.component';
 import { LaunchPageComponent} from "./launch-page/launch-page.component";
 import { QuestionListLaunchComponent} from "./launch-page/question-list/question-list-launch.component";
 import { QuestionLaunchComponent} from "./launch-page/question/question-launch.component";
-import {QuestHeaderLaunchComponent} from "./launch-page/quest-header/quest-header-launch.component";
+import { QuestHeaderLaunchComponent} from "./launch-page/quest-header/quest-header-launch.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginPageComponent,
+    FooterComponent,
     HeaderComponent,
     MainPageComponent,
     QuestHeaderComponent,
@@ -35,9 +37,11 @@ import {QuestHeaderLaunchComponent} from "./launch-page/quest-header/quest-heade
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
+    FooterComponent,
     MainPageComponent,
     HeaderComponent,
     QuestHeaderComponent,
@@ -51,4 +55,5 @@ import {QuestHeaderLaunchComponent} from "./launch-page/quest-header/quest-heade
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
