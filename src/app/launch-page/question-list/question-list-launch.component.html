@@ -1,0 +1,16 @@
+<div id="mainQuestionList">
+  <div>
+    Questions
+  </div>
+  <ng-container *ngIf="questionnaire != undefined">
+    <ng-container *ngFor="let question of questionnaire.questions">
+      <ng-container *ngIf="question.isLoaded != undefined && question.isLoaded == true">
+        <div class="questionnaireLabel">{{question.name.value}}</div>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div id="mainQuestion">
+  <question-launch #question *ngIf="selectedQuestion != undefined" [question]="selectedQuestion"></question-launch>
+</div>

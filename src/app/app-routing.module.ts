@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainPageComponent} from "./main-page/main-page.component";
+import {LaunchPageComponent} from "./launch-page/launch-page.component";
 
 const routes: Routes = [
-  { path: 'dashboard', component: MainPageComponent }
+    { path: 'dashboard', component: MainPageComponent },
+    { path: 'launch/:id', component: LaunchPageComponent }
   ];
 
 @NgModule({

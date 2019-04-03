@@ -1,11 +1,32 @@
 <div id="mainQuestHeader">
   <ng-container *ngIf="questionnaire != undefined">
-    <span *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false" class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
-    <input *ngIf="questionnaire.name.isModeEdit == true" type="text" [(ngModel)]="questionnaire.name.value">
-    <div class="nameButtons">
-      <button *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false" (click)="questionnaire.name.isModeEdit = true">Editer</button>
-      <button *ngIf="questionnaire.name.isModeEdit == true" (click)="questionnaire.name.isModeEdit = false">Sauvegarder</button>
-      <button (click)="deleteQuestionnaire()">Supprimer ce questionnaire</button>
+    <div style="float: left;">
+      <span *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false" class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
+      <input *ngIf="questionnaire.name.isModeEdit == true" type="text" [(ngModel)]="questionnaire.name.value">
+      <div class="nameButtons">
+        <button *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false" (click)="questionnaire.name.isModeEdit = true">Editer</button>
+        <button *ngIf="questionnaire.name.isModeEdit == true" (click)="questionnaire.name.isModeEdit = false">Sauvegarder</button>
+        <button (click)="deleteQuestionnaire()">Supprimer ce questionnaire</button>
+      </div>
+    </div>
+
+
+    <div style="float: left;">
+      <button [routerLink]="['/launch', questionnaire.id]">Lancer</button>
+    </div>
+
+    <div style="float: left;">
+      <button [routerLink]="['/launch', questionnaire.id]" >Stats</button>
+    </div>
+
+    <div style="float: left;">
+      Timer :
+      <span *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false" class="questionnaireTimerLabel">{{questionnaire.timer.value}}</span>
+      <input *ngIf="questionnaire.timer.isModeEdit == true" type="text" [(ngModel)]="questionnaire.timer.value">
+      <div class="timerButtons">
+        <button *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false" (click)="questionnaire.timer.isModeEdit = true">Editer</button>
+        <button *ngIf="questionnaire.timer.isModeEdit == true" (click)="questionnaire.timer.isModeEdit = false">Sauvegarder</button>
+      </div>
     </div>
   </ng-container>
 </div>

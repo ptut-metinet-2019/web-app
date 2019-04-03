@@ -1,0 +1,13 @@
+<div id="mainQuestion">
+  <span class="propositionLabel">{{question.name.value}}</span>
+
+  <ng-container *ngFor="let proposition of question.propositions">
+    <div class="propositionLabel">{{proposition.label}}</div>
+  </ng-container>
+
+  <div>
+    Temps restant : {{timerValue}}
+  </div>
+
+  <button *ngIf="timerValue == 0" (click)="goNextQuestion()">Question suivante</button>
+</div>
