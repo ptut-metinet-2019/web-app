@@ -21,8 +21,7 @@ export class QuestionListComponent implements OnInit{
 
   public addQuestion(){
     //TODO Ajout d'une question
-    console.info("Add new question");
-    this.questionnaire.questions.push({
+    let newQuestion = {
       name: {
         value: "Nouvelle question",
         isModeEdit: false
@@ -41,7 +40,9 @@ export class QuestionListComponent implements OnInit{
         value: "60",
         isModeEdit: false
       }
-    });
+    };
+    this.questionnaire.questions.push(newQuestion);
+    this.selectedQuestion = newQuestion;
   }
 
   public clearQuestionComponent(){

@@ -37,15 +37,38 @@ export class QuestListComponent implements OnInit{
   }
 
   public addNewQuestionnaire() {
-    this.questionnairesList.push({
+    let newQuestionnaire = {
+      id: this.questionnairesList.length + 1,
+      timer:{
+        value: "60",
+        isModeEdit: false
+      },
       name: {
         value: this.newQuestionnaireName,
         isModeEdit: false
-      }
-    });
+      },
+      questions: [
+        {
+          name: {
+            value: "Votre première question",
+            isModeEdit: false
+          },
+          propositions: [
+            {
+              label: "Réponse numéro 1",
+              isModeEdit: false
+            }
+          ],
+          timer: {
+            value: "60",
+            isModeEdit: false
+          }
+        }]
+    };
+    this.questionnairesList.push(newQuestionnaire);
     this.newQuestionnaireName = "";
     this.addingNewQuestionnaire = false;
-    console.info(this.questionnairesList)
+    this.selectedQuestionnaire = newQuestionnaire;
   }
 
   public initQuestionnaireList(){
