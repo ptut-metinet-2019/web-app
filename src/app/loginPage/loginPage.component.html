@@ -1,33 +1,49 @@
 <script src="path/to/angular.js"></script>
 <script src="path/to/angular-messages.js"></script>
-<h1 class="loginPageTitle">Bienvenue sur SMS-Vote</h1>
-<div class="loginMenu">
-  <div class="loginFlex">
-    <h2 class="loginMenuTitle">Se connecter</h2>
-    <form class="registerForm" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
-      <label class="mailLabel">E-mail</label><br>
-      <input name="email" formControlName="loginEmail" class="mailInput" required><br>
-      <label class="passwordLabel">Mot de passe</label><br>
-      <input type="password" formControlName="loginPassword" name="password" class="passwordInput" required><br>
-      <button type="submit" [disabled]="!loginForm.valid">Submit</button>
-      <div class="error invalidCredentialsError"*ngIf="invalidCredentialsError">Email ou mot de passe invalide</div>
-    </form>
-  </div>
-  <div class="registerFlex">
-    <h2 class="loginMenuTitle">S'enregistrer</h2>
-    <form class="loginForm" [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
-      <label class="mailLabel">E-mail</label><br>
-      <input name="email" formControlName="registerEmail" class="mailInput" required><br>
-      <label class="passwordLabel">Mot de passe</label><br>
-      <label class="authorizePasswordCharacters">( A-Z a-z 0-9 - _ . ! ~ * ' ( ) )</label><br>
-      <input type="password" formControlName="registerPassword" name="password" class="passwordInput" required><br>
-      <label class="confirmPasswordLabel">Confirmer le mot de passe</label><br>
-      <input type="password" name="confirmPassword" formControlName="registerConfirmPassword"
-             class="confirmPasswordInput" required><br>
-      <button type="submit" [disabled]="!registerForm.valid">Submit</button>
-      <div class="error confirmPasswordError"*ngIf="confirmPasswordError">Les mots de passe ne correspondent pas</div>
-    </form>
+<div class="bodyFlex">
+  <h1 class="loginPageTitle">Bienvenue sur SMS-Vote</h1>
+  <div class="loginRegisterMenu">
+    <div class="loginFlex">
+      <h2 class="loginMenuTitle">Se connecter</h2>
+      <form class="registerForm" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        <div class="emailFlex">
+          <input name="email" placeholder="E-Mail" formControlName="loginEmail" class="input registerEmail" required>
+          <div class="border passwordBorder"></div>
+        </div>
+        <div class="passwordFlex">
+          <input name="password" type=password placeholder="Mot de Passe" formControlName="loginPassword"
+                 class="input registerPassword" required>
+          <div class="border passwordBorder"></div>
+        </div>
+        <button class="submitButton" type="submit" [disabled]="!loginForm.valid">Submit</button>
+        <div class="error invalidCredentialsError" *ngIf="invalidCredentialsError">Email ou mot de passe invalide</div>
+      </form>
+    </div>
+    <div class="registerFlex">
+      <h2 class="loginMenuTitle">S'enregistrer</h2>
+      <form class="loginForm" [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+
+        <div class="emailFlex">
+          <input name="email" placeholder="E-Mail" formControlName="registerEmail" class="input registerEmail" required>
+          <div class="border passwordBorder"></div>
+        </div>
+
+        <div class="passwordFlex">
+          <input name="password" type=password placeholder="Mot de Passe" formControlName="registerPassword"
+                 class="input registerPassword" required>
+          <div class="border passwordBorder"></div>
+        </div>
+
+        <div class="confirmPasswordFlex">
+          <input name="confirmPassword" type=password placeholder="Confirmation Mot de Passe"
+                 formControlName="registerConfirmPassword" class="input registerConfirmPassword" required>
+          <div class="border passwordBorder"></div>
+        </div>
+        <button class="submitButton" type="submit" [disabled]="!registerForm.valid">Submit</button>
+        <div class="error confirmPasswordError" *ngIf="confirmPasswordError">Les mots de passe ne correspondent pas
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-<div class="registerMenu"></div>
-
+<app-footer></app-footer>

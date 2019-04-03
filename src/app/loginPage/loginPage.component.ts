@@ -49,6 +49,7 @@ export class LoginPageComponent implements OnInit {
     } else {
       // pass doesnt matchs
       this.confirmPasswordError = true;
+      this.invalidCredentialsError = false;
     }
   }
 
@@ -57,6 +58,7 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(['/', 'dashboard']);
     } else {
       this.invalidCredentialsError = true;
+      this.confirmPasswordError = false;
     }
   }
 

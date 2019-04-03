@@ -5,11 +5,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginPageComponent} from './loginPage/loginPage.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FooterComponent} from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +19,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    FooterComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
