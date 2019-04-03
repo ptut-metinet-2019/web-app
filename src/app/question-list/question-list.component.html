@@ -13,5 +13,5 @@
 </div>
 
 <div id="mainQuestion">
-  <question *ngIf="selectedQuestion != undefined" [question]="selectedQuestion"></question>
+  <question #question *ngIf="selectedQuestion != undefined" [question]="selectedQuestion"></question>
 </div>

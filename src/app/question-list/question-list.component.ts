@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {QuestionComponent} from "../question/question.component";
 
 @Component({
   selector: 'question-list',
@@ -7,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class QuestionListComponent implements OnInit{
   @Input("questionnaire") questionnaire: any;
+  @ViewChild("question") questionComponent: QuestionComponent;
   selectedQuestion;
 
   ngOnInit(){
@@ -40,6 +42,12 @@ export class QuestionListComponent implements OnInit{
         isModeEdit: false
       }
     });
+  }
+
+  public clearQuestionComponent(){
+    if(this.questionComponent != undefined){
+      this.questionComponent.clear();
+    }
   }
 
   public deleteQuestion(question: any){

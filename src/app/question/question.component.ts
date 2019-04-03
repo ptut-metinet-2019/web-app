@@ -1,4 +1,4 @@
-import {Component, forwardRef, Inject, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, forwardRef, Inject, Input, OnInit} from '@angular/core';
 import {QuestionListComponent} from "../question-list/question-list.component";
 
 @Component({
@@ -6,7 +6,7 @@ import {QuestionListComponent} from "../question-list/question-list.component";
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.scss']
 })
-export class QuestionComponent implements OnChanges, OnInit{
+export class QuestionComponent implements OnInit{
   @Input("question") question: any;
   parentElement: QuestionListComponent;
 
@@ -18,13 +18,8 @@ export class QuestionComponent implements OnChanges, OnInit{
     // this.initQuestion();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    const question: SimpleChange = changes.question;
-    console.log('prev value: ', question.previousValue);
-    console.log('current value: ', question.currentValue);
-    //if((question.previousValue =! undefined &&  question.currentValue != undefined) && (question.previousValue =! question.currentValue)){
-    //  this.question = undefined;
-    //}
+  public clear(){
+    this.question = {};
   }
 
   public initQuestion(){

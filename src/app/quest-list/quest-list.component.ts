@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {QuestionListComponent} from "../question-list/question-list.component";
 
 @Component({
   selector: 'quest-list',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quest-list.component.scss']
 })
 export class QuestListComponent implements OnInit{
+  @ViewChild("questionList") questionListComponent: QuestionListComponent;
   questionnairesList: any[];
   selectedQuestionnaire: any;
   addingNewQuestionnaire: boolean;
@@ -13,6 +15,10 @@ export class QuestListComponent implements OnInit{
 
   ngOnInit(){
     this.initQuestionnaireList();
+  }
+
+  public clearQuestion(){
+    this.questionListComponent.clearQuestionComponent();
   }
 
   public deleteQuestionnaire(questionnnaire){
@@ -24,7 +30,10 @@ export class QuestListComponent implements OnInit{
 
   public loadQuestionnaire(questionnaire: any){
     //TODO : Load QCM via BD à partir du param questionnaire
-   this.selectedQuestionnaire = questionnaire;
+    if(this.selectedQuestionnaire != questionnaire){
+      this.clearQuestion();
+      this.selectedQuestionnaire = questionnaire;
+    }
   }
 
   public addNewQuestionnaire() {
