@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 })
 export class QuestHeaderLaunchComponent implements OnInit{
   @Input("questionnaire") questionnaire: any;
-
+  public isPaused = false;
   parentElement: LaunchPageComponent;
 
   constructor(@Inject(forwardRef(() => LaunchPageComponent)) private _parent: LaunchPageComponent,
@@ -19,6 +19,20 @@ export class QuestHeaderLaunchComponent implements OnInit{
 
   ngOnInit(){
 
+  }
+
+  public pause(){
+    this.parentElement.pause();
+    this.isPaused = true;
+  }
+
+  public resume(){
+    this.parentElement.resume();
+    this.isPaused = false;
+  }
+
+  public stop(){
+    this.parentElement.stop();
   }
 
 }

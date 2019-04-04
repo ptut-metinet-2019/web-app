@@ -26,4 +26,15 @@ export class QuestionListLaunchComponent implements OnInit{
     }
   }
 
+  public pause(){
+    this.questionLaunchComponent.pause();
+  }
+
+  public resume(){
+    this.questionLaunchComponent.resume();
+  }
+
+  public stop(){
+    this.questionLaunchComponent.stop();
+  }
 }
