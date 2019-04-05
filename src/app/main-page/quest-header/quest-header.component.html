@@ -22,7 +22,7 @@
     <div style="float: left;">
       Timer :
       <span *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false" class="questionnaireTimerLabel">{{questionnaire.timer.value}}</span>
-      <input *ngIf="questionnaire.timer.isModeEdit == true" type="text" [(ngModel)]="questionnaire.timer.value">
+      <input *ngIf="questionnaire.timer.isModeEdit == true" type="number" [(ngModel)]="questionnaire.timer.value">
       <div class="timerButtons">
         <button *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false" (click)="questionnaire.timer.isModeEdit = true">Editer</button>
         <button *ngIf="questionnaire.timer.isModeEdit == true" (click)="questionnaire.timer.isModeEdit = false">Sauvegarder</button>

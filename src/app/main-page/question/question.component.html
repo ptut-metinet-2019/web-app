@@ -10,7 +10,7 @@
 
     Timer :
     <span *ngIf="question.timer.isModeEdit == false" class="propositionLabel">{{question.timer.value}}</span>
-    <input *ngIf="question.timer.isModeEdit == true" type="text" [(ngModel)]="question.timer.value">
+    <input *ngIf="question.timer.isModeEdit == true" type="number" [(ngModel)]="question.timer.value">
     <div class="timerButtons">
       <button *ngIf="question.timer.isModeEdit == false" (click)="question.timer.isModeEdit = true">Editer</button>
       <button *ngIf="question.timer.isModeEdit == true" (click)="question.timer.isModeEdit = false">Sauvegarder</button>
