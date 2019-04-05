@@ -25,7 +25,7 @@ export class QuestionComponent implements OnInit{
   public initQuestion(){
     this.question = {
       name: {
-        value: "Ceci est la question 1",
+        value: "Ceci est la questions 1",
         isModeEdit: false
       },
       propositions: [
@@ -50,14 +50,14 @@ export class QuestionComponent implements OnInit{
   }
 
   public deleteQuestion(){
-    //TODO Suppression d'une question
-    console.info("Removing question", this);
+    //TODO Suppression d'une questions
+    console.info("Removing questions", this);
     this.parentElement.deleteQuestion(this.question);
   }
 
   public addProposition(){
     //TODO Ajout d'une proposition
-    console.info("Add new question");
+    console.info("Add new questions");
     this.question.propositions.push({
       label: "Nouvelle proposition",
       isModeEdit: true

@@ -3,7 +3,7 @@
     <span class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
     <button *ngIf="!isPaused" (click)="pause()">Pause</button>
     <button *ngIf="isPaused" (click)="resume()">Reprendre</button>
-    <button (click)="stop()">Stop</button>
+    <button [routerLink]="['/dashboard']">Stop</button>
   </div>
 
 </div>

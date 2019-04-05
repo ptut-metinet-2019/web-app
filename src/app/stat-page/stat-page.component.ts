@@ -1,14 +1,14 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {QuestionListLaunchComponent} from "./question-list/question-list-launch.component";
+import {QuestListStatComponent} from "./quest-list/quest-list-stat.component";
 
 @Component({
-  selector: 'main-launch-page',
-  templateUrl: './launch-page.component.html',
-  styleUrls: ['./launch-page.component.scss']
+  selector: 'main-stat-page',
+  templateUrl: './stat-page.component.html',
+  styleUrls: ['./stat-page.component.scss']
 })
-export class LaunchPageComponent implements OnInit{
-  @ViewChild("questionListPanel") questionListPanel: QuestionListLaunchComponent;
+export class StatPageComponent implements OnInit{
+  @ViewChild("questListStat") questListStat: QuestListStatComponent;
   private questId: number;
   public questionnaire: any;
   public questLoaded = false;
@@ -20,18 +20,6 @@ export class LaunchPageComponent implements OnInit{
       this.questId = +params['id']; // (+) converts string 'id' to a number
       this.loadQuestionnaire();
     });
-  }
-
-  public pause(){
-    this.questionListPanel.pause();
-  }
-
-  public resume(){
-    this.questionListPanel.resume();
-  }
-
-  public stop(){
-    this.questionListPanel.stop();
   }
 
   private loadQuestionnaire(){

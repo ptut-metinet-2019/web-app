@@ -1,0 +1,12 @@
+<div id="mainQuestion">
+  <ng-container *ngIf="lancement != undefined && _parent.selectedLancement == lancement">
+    <div *ngFor="let question of lancement.questions" class="question">
+      <span>{{question.name.value}}</span>
+
+      <div *ngFor="let proposition of question.propositions" class="proposition">
+        {{proposition.label}} - {{proposition.stat}}%
+        <div class="barStat" [style.width.%]="proposition.stat"></div>
+      </div>
+    </div>
+  </ng-container>
+</div>

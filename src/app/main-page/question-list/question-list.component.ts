@@ -20,10 +20,10 @@ export class QuestionListComponent implements OnInit{
   }
 
   public addQuestion(){
-    //TODO Ajout d'une question
+    //TODO Ajout d'une questions
     let newQuestion = {
       name: {
-        value: "Nouvelle question",
+        value: "Nouvelle questions",
         isModeEdit: false
       },
       propositions: [
@@ -63,7 +63,7 @@ export class QuestionListComponent implements OnInit{
     this.questionnaire = [
       {
         name: {
-          value: "Ceci est la question 1",
+          value: "Ceci est la questions 1",
           isModeEdit: false
         },
         propositions: [
@@ -87,7 +87,7 @@ export class QuestionListComponent implements OnInit{
       },
       {
         name: {
-          value: "Ceci est la question 2",
+          value: "Ceci est la questions 2",
           isModeEdit: false
         },
         propositions: [
@@ -111,7 +111,7 @@ export class QuestionListComponent implements OnInit{
       },
       {
         name: {
-          value: "Ceci est la question 3",
+          value: "Ceci est la questions 3",
           isModeEdit: false
         },
         propositions: [

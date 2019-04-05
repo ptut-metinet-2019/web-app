@@ -50,7 +50,7 @@ export class QuestListComponent implements OnInit{
       questions: [
         {
           name: {
-            value: "Votre première question",
+            value: "Votre première questions",
             isModeEdit: false
           },
           propositions: [
@@ -87,7 +87,7 @@ export class QuestListComponent implements OnInit{
         questions: [
           {
             name: {
-              value: "Ceci est la question 1",
+              value: "Ceci est la questions 1",
               isModeEdit: false
             },
             propositions: [
@@ -111,7 +111,7 @@ export class QuestListComponent implements OnInit{
           },
           {
             name: {
-              value: "Ceci est la question 2",
+              value: "Ceci est la questions 2",
               isModeEdit: false
             },
             propositions: [
@@ -135,7 +135,7 @@ export class QuestListComponent implements OnInit{
           },
           {
             name: {
-              value: "Ceci est la question 3",
+              value: "Ceci est la questions 3",
               isModeEdit: false
             },
             propositions: [
@@ -173,7 +173,7 @@ export class QuestListComponent implements OnInit{
         questions: [
           {
             name: {
-              value: "Ceci est la question 1 du questionnaire 2",
+              value: "Ceci est la questions 1 du questionnaire 2",
               isModeEdit: false
             },
             propositions: [
@@ -197,7 +197,7 @@ export class QuestListComponent implements OnInit{
           },
           {
             name: {
-              value: "Ceci est la question 2 du questionnaire 2",
+              value: "Ceci est la questions 2 du questionnaire 2",
               isModeEdit: false
             },
             propositions: [
@@ -221,7 +221,7 @@ export class QuestListComponent implements OnInit{
           },
           {
             name: {
-              value: "Ceci est la question 3 du questionnaire 2",
+              value: "Ceci est la questions 3 du questionnaire 2",
               isModeEdit: false
             },
             propositions: [
@@ -259,7 +259,7 @@ export class QuestListComponent implements OnInit{
         questions: [
           {
             name: {
-              value: "Ceci est la question 1 du questionnaire 3",
+              value: "Ceci est la questions 1 du questionnaire 3",
               isModeEdit: false
             },
             propositions: [
@@ -283,7 +283,7 @@ export class QuestListComponent implements OnInit{
           },
           {
             name: {
-              value: "Ceci est la question 2 du questionnaire 3",
+              value: "Ceci est la questions 2 du questionnaire 3",
               isModeEdit: false
             },
             propositions: [

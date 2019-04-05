@@ -1,0 +1,13 @@
+<div id="mainQuestList">
+  <div>
+    Mes questionnaires
+  </div>
+  <ng-container *ngFor="let questionnaire of questionnairesList">
+    <div (click)="loadQuestionnaire(questionnaire)">
+      <span class="questionnaireLabel">{{questionnaire.name.value}}</span>
+    </div>
+  </ng-container>
+</div>
+
+<quest-header-stat #statHeader [questionnaire]="selectedQuestionnaire"></quest-header-stat>
+<quest-dates #questionDatesList [questionnaire]="selectedQuestionnaire"></quest-dates>
