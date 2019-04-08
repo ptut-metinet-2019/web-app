@@ -1,31 +1,49 @@
 <div id="mainQuestion">
-  <ng-container *ngIf="question != undefined && _parent.questionnaire != undefined && _parent.selectedQuestion == question">
-    <span *ngIf="question.name.isModeEdit == false" class="propositionLabel">{{question.name.value}}</span>
-    <input *ngIf="question.name.isModeEdit == true" type="text" [(ngModel)]="question.name.value">
-    <div class="nameButtons">
-      <button *ngIf="question.name.isModeEdit == false" (click)="question.name.isModeEdit = true">Editer</button>
-      <button *ngIf="question.name.isModeEdit == true" (click)="question.name.isModeEdit = false">Sauvegarder</button>
-      <button (click)="deleteQuestion()">Supprimer cette question</button>
+  <ng-container
+    *ngIf="question != undefined && _parent.questionnaire != undefined && _parent.selectedQuestion == question">
+    <div class="flexEditQuestionTitle">
+      <div class="inputQuestionTitle">
+        <span *ngIf="question.name.isModeEdit == false" class="questionLabel">{{question.name.value}}</span>
+        <input *ngIf="question.name.isModeEdit == true" type="text" [(ngModel)]="question.name.value">
+      </div>
+      <div class="nameButtons">
+        <img *ngIf="question.name.isModeEdit == false" (click)="question.name.isModeEdit = true"
+             src="assets/img/edit.svg">
+        <button *ngIf="question.name.isModeEdit == true" (click)="question.name.isModeEdit = false">Sauvegarder</button>
+        <img (click)="deleteQuestion()" src="assets/img/delete.svg">
+      </div>
     </div>
-
-    Timer :
-    <span *ngIf="question.timer.isModeEdit == false" class="propositionLabel">{{question.timer.value}}</span>
-    <input *ngIf="question.timer.isModeEdit == true" type="text" [(ngModel)]="question.timer.value">
-    <div class="timerButtons">
-      <button *ngIf="question.timer.isModeEdit == false" (click)="question.timer.isModeEdit = true">Editer</button>
-      <button *ngIf="question.timer.isModeEdit == true" (click)="question.timer.isModeEdit = false">Sauvegarder</button>
+    <div class="flexEditTimer">
+      <div class="timerLabel">
+        <p>Timer :</p>
+        <span *ngIf="question.timer.isModeEdit == false">{{question.timer.value}}</span>
+        <input *ngIf="question.timer.isModeEdit == true" type="text" [(ngModel)]="question.timer.value">
+        <p>s</p>
+      </div>
+      <div class="timerButtons">
+        <img *ngIf="question.timer.isModeEdit == false" (click)="question.timer.isModeEdit = true"
+             src="assets/img/edit.svg">
+        <button *ngIf="question.timer.isModeEdit == true" (click)="question.timer.isModeEdit = false">Sauvegarder
+        </button>
+      </div>
     </div>
 
     <ng-container *ngFor="let proposition of question.propositions">
-      <div class="propositionDiv">
-        <span *ngIf="proposition.isModeEdit == false" class="propositionLabel">{{proposition.label}}</span>
-        <input *ngIf="proposition.isModeEdit == true" type="text" [(ngModel)]="proposition.label">
+      <div class="flexEditReponse">
+        <div class="propositionDiv">
+          <span *ngIf="proposition.isModeEdit == false" class="propositionLabel">{{proposition.label}}</span>
+          <input *ngIf="proposition.isModeEdit == true" type="text" [(ngModel)]="proposition.label">
+        </div>
         <div class="propositionButtons">
-          <button *ngIf="proposition.isModeEdit == false" (click)="proposition.isModeEdit = true">Editer</button>
+          <img *ngIf="proposition.isModeEdit == false" (click)="proposition.isModeEdit = true"
+               src="assets/img/edit.svg">
           <button *ngIf="proposition.isModeEdit == true" (click)="proposition.isModeEdit = false">Sauvegarder</button>
         </div>
+        <img (click)="deleteProposition()" src="assets/img/delete.svg">
       </div>
-      <button (click)="deleteProposition(proposition)">Supprimer</button>
     </ng-container>
-    <button (click)="addProposition()">+ Ajouter une question</button>
+    <div (click)="addProposition()" id="z_button" tabindex="0">
+      <div id="z_plus">+</div>
+    </div>
   </ng-container>
+</div>

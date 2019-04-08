@@ -1,32 +1,51 @@
 <div id="mainQuestHeader">
   <ng-container *ngIf="questionnaire != undefined">
-    <div style="float: left;">
-      <span *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false" class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
-      <input *ngIf="questionnaire.name.isModeEdit == true" type="text" [(ngModel)]="questionnaire.name.value">
-      <div class="nameButtons">
-        <button *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false" (click)="questionnaire.name.isModeEdit = true">Editer</button>
-        <button *ngIf="questionnaire.name.isModeEdit == true" (click)="questionnaire.name.isModeEdit = false">Sauvegarder</button>
-        <button (click)="deleteQuestionnaire()">Supprimer ce questionnaire</button>
+    <div class="saveArea">
+      <div class="element element1">
+    <span *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false"
+          class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
+      </div>
+      <div class="element element2">
+        <input *ngIf="questionnaire.name.isModeEdit == true" type="text" [(ngModel)]="questionnaire.name.value">
+      </div>
+      <div class="element element3">
+        <img class="classLogo"
+             *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false"
+             (click)="questionnaire.name.isModeEdit = true" src="assets/img/edit.svg">
+      </div>
+      <div class="element element4">
+        <img class="classLogo" *ngIf="questionnaire.name.isModeEdit == true"
+             (click)="questionnaire.name.isModeEdit = false"
+             src="assets/img/save.svg">
       </div>
     </div>
-
-
-    <div style="float: left;">
-      <button [routerLink]="['/launch', questionnaire.id]">Lancer</button>
+    <div class="element element5">
+      <img class="classLogo" (click)="deleteQuestionnaire()" src="assets/img/delete.svg">
     </div>
-
-    <div style="float: left;">
-      <button [routerLink]="['/launch', questionnaire.id]" >Stats</button>
+    <div class="element element6">
+      <img class="classLogo" [routerLink]="['/launch', questionnaire.id]" src="assets/img/launch.svg">
     </div>
-
-    <div style="float: left;">
-      Timer :
-      <span *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false" class="questionnaireTimerLabel">{{questionnaire.timer.value}}</span>
-      <input *ngIf="questionnaire.timer.isModeEdit == true" type="text" [(ngModel)]="questionnaire.timer.value">
-      <div class="timerButtons">
-        <button *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false" (click)="questionnaire.timer.isModeEdit = true">Editer</button>
-        <button *ngIf="questionnaire.timer.isModeEdit == true" (click)="questionnaire.timer.isModeEdit = false">Sauvegarder</button>
-      </div>
+    <div class="element element7">
+      <img class="classLogo" [routerLink]="['/launch', questionnaire.id]" src="assets/img/stats.svg">
+    </div>
+    <div class="element element8">
+      <p class="timerLabel">Timer :</p>
+    </div>
+    <div class="element element9">
+    <span *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false"
+          class="questionnaireTimerLabel">{{questionnaire.timer.value}}</span>
+    </div>
+    <div class="element element10">
+      <input *ngIf="questionnaire.timer.isModeEdit == true" type="text" [(ngModel)]="questionnaire.timer.value"><p class="secondTimer">s</p>
+    </div>
+    <div class="element element11">
+      <img class="classLogo editTime"
+           *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false"
+           (click)="questionnaire.timer.isModeEdit = true" src="assets/img/edit.svg">
+    </div>
+    <div class="element element12">
+      <img class="classLogo" *ngIf="questionnaire.timer.isModeEdit == true"
+           (click)="questionnaire.timer.isModeEdit = false" src="assets/img/save.svg">
     </div>
   </ng-container>
 </div>

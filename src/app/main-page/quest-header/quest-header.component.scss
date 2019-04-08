@@ -1,15 +1,70 @@
-#mainQuestHeader{
-  width: 90%;
-  background-color: lightpink;
+#mainQuestHeader {
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: #544E71;
   border: black 2px;
-  height: 10vh;
-  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.questionnaireTimerLabel{
-
+.flexHeaderQuestTitle, .flexTimer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
 }
 
-.timerButtons{
+.element {
+  width: auto;
+  height: auto;
+  margin: 0;
+  display: flex;
+  color: ghostwhite;
+  font-size: large;
+}
+.secondTimer{
+  margin-left: -9px;
+  width: auto;
+  height: auto;
+}
 
+.element1 {
+  height: auto;
+  font-size: x-large;
+  align-items: center;
+  justify-content: right;
+  width: 200px;
+  font-weight: bold;
+}
+
+.saveArea {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.classLogo {
+  width: auto;
+  height: 40px;
+}
+
+img {
+  width: auto;
+  height: 30px;
+}
+
+.element1, .saveArea, .element5, .element6, .element9, .secondTimer {
+  margin-right: 10px;
+  width: auto;
+  height: auto;
+}
+.element7{
+  width: auto;
+  height: auto;
+  margin-right: 50px;
 }

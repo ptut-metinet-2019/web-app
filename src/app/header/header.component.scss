@@ -1,4 +1,24 @@
-.headerMain{
+h1 {
+  margin: 0;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 65px;
   text-align: center;
-  background-color: aqua;
+  color: white;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+  background-color: rgb(47, 43, 67);
+  letter-spacing: .15em;
+  text-shadow: 1px -1px 0 #e4e3e2,
+  -1px 2px 1px #a8a6a6,
+  -2px 4px 1px #a0a0a0,
+  -3px 6px 1px #979797,
+  -4px 8px 1px #8d8d8d,
+  -5px 10px 1px #848484,
+  -6px 12px 1px #767676,
+  -7px 14px 1px #666666,
+  -8px 16px 1px #565656,
+  -9px 18px 1px #464646,
 }

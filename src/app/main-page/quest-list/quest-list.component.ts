@@ -173,7 +173,7 @@ export class QuestListComponent implements OnInit{
         questions: [
           {
             name: {
-              value: "Ceci est la question 1 du questionnaire 2",
+              value: "Ceci est la question 1 du questionnaire 2Ceci est la question 1 du questionnaire 2Ceci est la question 1 du questionnaire 2Ceci est la question 1 du questionnaire 2",
               isModeEdit: false
             },
             propositions: [

@@ -1,9 +1,84 @@
-#mainQuestion{
-  position: absolute;
-  margin-top: 10vh;
-  margin-left: 20%;
-  width: 79%;
-  background-color: lightyellow;
-  border: black 2px;
-  height: calc(100vh - 120px);
+#mainQuestion {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+
+.flexEditQuestionTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  font-size: large;
+}
+
+.flexEditTimer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.flexEditReponse {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.propositionDiv, .nameButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.propositionDiv, .inputQuestionTitle, .timerLabel {
+  width: 50%;
+  display: flex;
+}
+
+img {
+  width: 40px;
+}
+
+#z_plus {
+  text-align: center;
+  line-height: 50px;
+  font-size: 30px;
+}
+
+#z_button {
+
+  background-color: #d44949;
+  height: 50px;
+  width: 50px;
+  outline: 0;
+  display: block;
+  margin-top: 10px;
+  color: #fff;
+  border-radius: 100%;
+}
+
+#z_button:hover {
+  height: 50px;
+  width: 50px;
+  animation-name: turnButton;
+  cursor: pointer;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes turnButton {
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+
+  }
 }

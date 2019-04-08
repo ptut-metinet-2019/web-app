@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="25.4mm"
+   height="19.049999mm"
+   viewBox="0 0 25.4 19.049999"
+   version="1.1"
+   id="svg847"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="dessin.svg">
+  <defs
+     id="defs841" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4"
+     inkscape:cx="56.978085"
+     inkscape:cy="44.891859"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="988"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata844">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-24.955879,-3.6550417)">
+    <g
+       id="g5"
+       transform="matrix(0.26458333,0,0,0.26458333,4.9136914,38.464286)">
+      <title
+         id="title2">background</title>
+      <rect
+         id="canvas_background"
+         height="402"
+         width="582"
+         y="-1"
+         x="-1"
+         style="fill:none" />
+    </g>
+    <g
+       id="g11"
+       transform="matrix(0.26458333,0,0,0.26458333,24.955879,0.48004173)"
+       inkscape:export-filename="C:\Users\lp\Desktop\Dukto\g11.svg.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <title
+         id="title7">Layer 1</title>
+      <path
+         id="svg_1"
+         d="m 84,20 c 2.206,0 4,1.794 4,4 v 48 c 0,2.206 -1.794,4 -4,4 H 35.593 L 10.704,48 35.593,20 H 84 m 0,-8 H 32 L 0,48 32,84 h 52 c 6.627,0 12,-5.373 12,-12 V 24 C 96,17.373 90.627,12 84,12 Z"
+         inkscape:connector-curvature="0"
+         style="fill:#eaeaea" />
+      <path
+         id="svg_2"
+         d="m 65.657,48 8.485,-8.485 c 1.562,-1.562 1.562,-4.095 0,-5.657 -1.562,-1.562 -4.096,-1.562 -5.657,0 L 60,42.343 51.515,33.858 c -1.562,-1.562 -4.095,-1.562 -5.657,0 -1.562,1.562 -1.562,4.095 0,5.657 L 54.343,48 45.858,56.485 c -1.562,1.562 -1.562,4.095 0,5.657 1.562,1.562 4.095,1.562 5.657,0 L 60,53.657 l 8.485,8.485 c 1.562,1.562 4.095,1.562 5.657,0 1.562,-1.562 1.562,-4.096 0,-5.657 z"
+         inkscape:connector-curvature="0"
+         style="fill:#eaeaea" />
+    </g>
+  </g>
+</svg>

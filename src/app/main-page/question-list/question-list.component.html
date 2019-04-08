@@ -1,14 +1,20 @@
 <div id="mainQuestionList">
-  <div>
+  <div class="QuestionListTitle">
     Mes questions
   </div>
   <ng-container *ngIf="questionnaire != undefined">
-    <ng-container *ngFor="let question of questionnaire.questions">
-      <div (click)="selectQuestion(question)">
-        <span class="questionnaireLabel">{{question.name.value}}</span>
-      </div>
-    </ng-container>
-    <button (click)="addQuestion()">+ Nouveau</button>
+    <div class="question-list">
+      <ng-container *ngFor="let question of questionnaire.questions">
+        <div class="questionDiv" (click)="selectQuestion(question)">
+          <div class="fixPaddingPB">
+            <p class="questionnaireLabel">{{question.name.value}}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div (click)="addQuestion()" id="z_button" tabindex="0">
+      <div id="z_plus">+</div>
+    </div>
   </ng-container>
 </div>
 

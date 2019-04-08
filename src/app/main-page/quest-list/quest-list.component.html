@@ -1,18 +1,36 @@
 <div id="mainQuestList">
-  <div>
-    Mes questionnaires
+  <div class="form-logo-flex">
+    <img class="form-logo" src="assets/img/icon_questionnaire2.svg">
+    <p class="form-title">QUESTIONNAIRES</p>
   </div>
   <ng-container *ngFor="let questionnaire of questionnairesList">
-    <div (click)="loadQuestionnaire(questionnaire)">
+    <div class="inputLabel" (click)="loadQuestionnaire(questionnaire)">
       <span class="questionnaireLabel">{{questionnaire.name.value}}</span>
     </div>
   </ng-container>
   <ng-container *ngIf="addingNewQuestionnaire == true">
     <input type="text" [(ngModel)]="newQuestionnaireName">
-    <button (click)="addNewQuestionnaire()">Valider</button>
+    <div class="button-new-tour">
+      <div (click)="addNewQuestionnaire()" class="button">
+        <a>
+          AJOUTER
+          <span class="shift">›</span>
+        </a>
+        <div class="mask"></div>
+      </div>
+    </div>
   </ng-container>
-  <button *ngIf="!addingNewQuestionnaire" (click)="addingNewQuestionnaire = true">+ Nouveau</button>
+  <div class="button-new-tour">
+    <div *ngIf="!addingNewQuestionnaire" (click)="addingNewQuestionnaire = true" class="button">
+      <a>
+        NOUVEAU
+        <span class="shift">›</span>
+      </a>
+      <div class="mask"></div>
+    </div>
+  </div>
 </div>
-
-<quest-header [questionnaire]="selectedQuestionnaire"></quest-header>
-<question-list #questionList [questionnaire]="selectedQuestionnaire"></question-list>
+<div class="question-flex">
+  <quest-header [questionnaire]="selectedQuestionnaire"></quest-header>
+  <question-list #questionList [questionnaire]="selectedQuestionnaire"></question-list>
+</div>
