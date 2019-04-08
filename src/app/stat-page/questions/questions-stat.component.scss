@@ -1,0 +1,23 @@
+#mainQuestion{
+  position: absolute;
+  margin-top: 10vh;
+  margin-left: 20%;
+  width: 79%;
+  background-color: lightyellow;
+  border: black 2px;
+  height: calc(100vh - 120px);
+}
+
+.question{
+  border: 1px solid red;
+  margin: 5px;
+}
+
+.proposition{
+  background-color: lightgrey;
+}
+
+.barStat{
+  background-color: lightseagreen;
+  height: 5px;
+}

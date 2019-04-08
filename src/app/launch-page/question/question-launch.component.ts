@@ -10,7 +10,9 @@ export class QuestionLaunchComponent implements OnInit{
   @Input("question") question: any;
   parentElement: QuestionListLaunchComponent;
   public cpt: any;
-  public timerValue: number;
+  public timerValue: any;
+  public isPaused = false;
+  public isStoped = false;
 
   constructor(@Inject(forwardRef(() => QuestionListLaunchComponent)) private _parent:QuestionListLaunchComponent) {
     this.parentElement = _parent;
@@ -28,11 +30,30 @@ export class QuestionLaunchComponent implements OnInit{
       this.cpt = this.parentElement.questionnaire.timer.value;
       this.timerValue = parseInt(this.parentElement.questionnaire.timer.value);
     }
-    for(let i = 1; i < parseInt(this.cpt)+1; i++){
-      setTimeout(function(){
-        this.timerValue -= 1;
-      }.bind(this),1000*i);
-    }
+    let cptMax = parseInt(this.cpt)+1;
+    //for(let i = 1; i < cptMax; i++){
+      setInterval(function(){
+        if(!this.isPaused && !this.isStoped && this.timerValue > 0){
+          this.timerValue -= 1;
+        }else{
+          cptMax += 1;
+        }
+      }.bind(this),1000);
+    //}
+  }
+
+  public pause(){
+    this.isPaused = true;
+  }
+
+  public resume(){
+    this.isPaused = false;
+  }
+
+  public stop(){
+    this.isPaused = true;
+    this.isStoped = true;
+    this.timerValue = "Questionnaire arreté";
   }
 
   public goNextQuestion(){

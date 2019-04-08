@@ -22,8 +22,8 @@ export class QuestHeaderComponent implements OnInit{
   }
 
   deleteQuestionnaire() {
-    //TODO Suppression d'une question
-    console.info("Delete new question", this);
+    //TODO Suppression d'une questions
+    console.info("Delete new questions", this);
     this.parentElement.deleteQuestionnaire(this.questionnaire);
   }
 

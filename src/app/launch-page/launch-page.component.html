@@ -2,6 +2,6 @@
 <header></header>
 
 <quest-header-launch *ngIf="questLoaded == true" [questionnaire]="questionnaire"></quest-header-launch>
-<question-list-launch *ngIf="questLoaded == true" [questionnaire]="questionnaire"></question-list-launch>
+<question-list-launch #questionListPanel *ngIf="questLoaded == true" [questionnaire]="questionnaire"></question-list-launch>
 
 <router-outlet></router-outlet>

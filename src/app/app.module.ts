@@ -18,6 +18,12 @@ import { QuestionListLaunchComponent} from "./launch-page/question-list/question
 import { QuestionLaunchComponent} from "./launch-page/question/question-launch.component";
 import { QuestHeaderLaunchComponent} from "./launch-page/quest-header/quest-header-launch.component";
 
+import { StatPageComponent} from "./stat-page/stat-page.component";
+import { QuestionsStatComponent} from "./stat-page/questions/questions-stat.component";
+import { QuestDatesComponent} from "./stat-page/quest-dates/quest-dates.component";
+import { QuestListStatComponent} from "./stat-page/quest-list/quest-list-stat.component";
+import { QuestHeaderStatComponent} from "./stat-page/quest-header/quest-header-stat.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +38,12 @@ import { QuestHeaderLaunchComponent} from "./launch-page/quest-header/quest-head
     LaunchPageComponent,
     QuestionListLaunchComponent,
     QuestionLaunchComponent,
-    QuestHeaderLaunchComponent
+    QuestHeaderLaunchComponent,
+    StatPageComponent,
+    QuestionsStatComponent,
+    QuestDatesComponent,
+    QuestListStatComponent,
+    QuestHeaderStatComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +62,12 @@ import { QuestHeaderLaunchComponent} from "./launch-page/quest-header/quest-head
     LaunchPageComponent,
     QuestionListLaunchComponent,
     QuestionLaunchComponent,
-    QuestHeaderLaunchComponent
+    QuestHeaderLaunchComponent,
+    StatPageComponent,
+    QuestionsStatComponent,
+    QuestDatesComponent,
+    QuestListStatComponent,
+    QuestHeaderStatComponent
   ],
   bootstrap: [AppComponent]
 })
