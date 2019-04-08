@@ -10,6 +10,23 @@
   height: auto;
 }
 
+textarea {
+  resize: none;
+  margin-left: 5%;
+  width: 90%;
+  height: 100px;
+  white-space: normal;
+  text-align: justify;
+  padding: 5px;
+  background-color: white;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: medium;
+}
+
+p {
+  text-align: justify;
+}
+
 .flexEditQuestionTitle {
   display: flex;
   flex-direction: row;
@@ -38,12 +55,25 @@
 }
 
 .propositionDiv, .inputQuestionTitle, .timerLabel {
-  width: 50%;
+  width: 80%;
+  padding-right: 10px;
   display: flex;
 }
 
-img {
+.img {
   width: 40px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: dimgrey;
+  margin-left: 10px;
+  border-radius: 15%;
+}
+
+img {
+  width: 20px;
 }
 
 #z_plus {
@@ -54,7 +84,7 @@ img {
 
 #z_button {
 
-  background-color: #d44949;
+  background-color: #6a9ed4;
   height: 50px;
   width: 50px;
   outline: 0;
@@ -86,8 +116,48 @@ img {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.timerLabel {
+  display: flex;
+  align-items: center;
+}
+
+.questionTitleLabel {
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.reponseTitleLabel {
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.deleteButton {
+  background-color: #d44949;
+}
+.editButton{
+  background: royalblue;
+}
+
+.timerLabelLeft, .timerLabelRight {
+  margin-right: 2px;
+}
+.reponsesList{
+  box-sizing: border-box;
+  height: 70%;
+  //overflow-y: scroll;
+  //scrollbar-width: thin;
+
+}
+#mainQuestion, question{
+  box-sizing: border-box;
+  height: 100%;
 }

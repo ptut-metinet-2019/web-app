@@ -1,21 +1,21 @@
 #mainQuestionList {
   border: black 2px;
-  background-color: #e2e2e2;
+  background-color: #c2c2c2;
   box-sizing: border-box;
   height: 100%;
-  width: 30%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 #mainQuestion{
   box-sizing: border-box;
-  width: 70%;
+  width: 60%;
   height: 100%;
   background: #bda9dd;
 }
 .question-list :hover{
-  background-color: #d44949;
+  background-color: #c0c0c0;
   width: auto;
   height: auto;
 }
@@ -46,7 +46,7 @@
   width: auto;
   height: auto;
   border: 1px solid #ddd;
-
+  background: #ddd;
 }
 
 .QuestionListTitle {
@@ -63,7 +63,7 @@
 
 #z_button {
 
-  background-color: #d44949;
+  background-color: #6a9ed4;
   height: 50px;
   width: 50px;
   outline: 0;

@@ -26,14 +26,13 @@
   color: ghostwhite;
   font-size: large;
 }
-.secondTimer{
+
+.secondTimer {
   margin-left: -9px;
   width: auto;
   height: auto;
 }
 
-input[type="number"] {
-  -moz-appearance: textfield;
 .element1 {
   height: auto;
   font-size: x-large;
@@ -49,28 +48,53 @@ input[type="number"] {
   display: flex;
   flex-direction: row;
 }
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-
-.classLogo {
-  width: auto;
-  height: 40px;
 }
 
-img {
-  width: auto;
-  height: 30px;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
-
 .element1, .saveArea, .element5, .element6, .element9, .secondTimer {
   margin-right: 10px;
   width: auto;
   height: auto;
 }
-.element7{
+
+.element7 {
   width: auto;
   height: auto;
   margin-right: 50px;
+}
+
+.img {
+  width: 60px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: dimgrey;
+  margin-left: 10px;
+  border-radius: 15%;
+}
+
+img {
+  width: 40px;
+  height: auto;
+}
+.launchButton{
+  background: white;
+}
+.deleteButton{
+  background: #d44949;
+}
+.statsButton{
+  background: orange;
+}
+.editButton{
+  background: royalblue;
 }

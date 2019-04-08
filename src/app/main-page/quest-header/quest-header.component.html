@@ -9,24 +9,32 @@
         <input *ngIf="questionnaire.name.isModeEdit == true" type="text" [(ngModel)]="questionnaire.name.value">
       </div>
       <div class="element element3">
-        <img class="classLogo"
-             *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false"
-             (click)="questionnaire.name.isModeEdit = true" src="assets/img/edit.svg">
+        <div *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false"
+             class="img editButton">
+          <img class="classLogo" (click)="questionnaire.name.isModeEdit = true" src="assets/img/edit.svg">
+        </div>
       </div>
       <div class="element element4">
-        <img class="classLogo" *ngIf="questionnaire.name.isModeEdit == true"
-             (click)="questionnaire.name.isModeEdit = false"
-             src="assets/img/save.svg">
+        <div *ngIf="questionnaire.name.isModeEdit == true" class="img saveButton">
+          <img class="classLogo" (click)="questionnaire.name.isModeEdit = false"
+               src="assets/img/save.svg">
+        </div>
       </div>
     </div>
     <div class="element element5">
-      <img class="classLogo" (click)="deleteQuestionnaire()" src="assets/img/delete.svg">
+      <div class="img deleteButton">
+        <img class="classLogo" (click)="deleteQuestionnaire()" src="assets/img/delete.svg">
+      </div>
     </div>
     <div class="element element6">
-      <img class="classLogo" [routerLink]="['/launch', questionnaire.id]" src="assets/img/launch.svg">
+      <div class="img launchButton">
+        <img class="classLogo" [routerLink]="['/launch', questionnaire.id]" src="assets/img/launch.svg">
+      </div>
     </div>
     <div class="element element7">
-      <img class="classLogo" [routerLink]="['/launch', questionnaire.id]" src="assets/img/stats.svg">
+      <div class="img statsButton">
+        <img class="classLogo" [routerLink]="['/stats', questionnaire.id]" src="assets/img/stats.svg">
+      </div>
     </div>
     <div class="element element8">
       <p class="timerLabel">Timer :</p>
@@ -36,16 +44,19 @@
           class="questionnaireTimerLabel">{{questionnaire.timer.value}}</span>
     </div>
     <div class="element element10">
-      <input *ngIf="questionnaire.timer.isModeEdit == true" type="text" [(ngModel)]="questionnaire.timer.value"><p class="secondTimer">s</p>
+      <input *ngIf="questionnaire.timer.isModeEdit == true" type="text" [(ngModel)]="questionnaire.timer.value">
+      <p class="secondTimer">s</p>
     </div>
     <div class="element element11">
-      <img class="classLogo editTime"
-           *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false"
-           (click)="questionnaire.timer.isModeEdit = true" src="assets/img/edit.svg">
+      <div *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false"
+           class="img editButton">
+        <img class="classLogo editTime" (click)="questionnaire.timer.isModeEdit = true" src="assets/img/edit.svg">
+      </div>
     </div>
     <div class="element element12">
-      <img class="classLogo" *ngIf="questionnaire.timer.isModeEdit == true"
-           (click)="questionnaire.timer.isModeEdit = false" src="assets/img/save.svg">
+      <div *ngIf="questionnaire.timer.isModeEdit == true" class="img deleteButton">
+        <img class="saveLogo" (click)="questionnaire.timer.isModeEdit = false" src="assets/img/save.svg">
+      </div>
     </div>
   </ng-container>
 </div>
