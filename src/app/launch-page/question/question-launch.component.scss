@@ -5,11 +5,8 @@
   padding: 0;
 }
 #mainQuestion{
-  position: absolute;
-  margin-top: 10vh;
-  margin-left: 10%;
-  width: 79%;
+  box-sizing: border-box;
+  height: 100%;
+  width: 80%;
   background-color: lightyellow;
-  border: black 2px;
-  height: calc(100vh - 120px);
 }

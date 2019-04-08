@@ -14,7 +14,7 @@
           <img
             src="assets/img/edit.svg">
         </div>
-        <div class="img" *ngIf="question.name.isModeEdit == true" (click)="question.name.isModeEdit = false">
+        <div class="img saveButton" *ngIf="question.name.isModeEdit == true" (click)="question.name.isModeEdit = false">
           <img
             src="assets/img/save.svg">
         </div>
@@ -27,7 +27,7 @@
       <div class="timerLabel">
         <p class="timerLabelLeft">Timer :</p>
         <p class="timerLabelRight" *ngIf="question.timer.isModeEdit == false">{{question.timer.value}}</p>
-        <input *ngIf="question.timer.isModeEdit == true" type="number" [(ngModel)]="question.timer.value">
+        <input class="inputTimer" *ngIf="question.timer.isModeEdit == true" type="number" [(ngModel)]="question.timer.value">
         <p>s</p>
       </div>
       <div class="timerButtons">
@@ -35,7 +35,7 @@
           <img
             src="assets/img/edit.svg">
         </div>
-        <div class="img" *ngIf="question.timer.isModeEdit == true" (click)="question.timer.isModeEdit = false">
+        <div class="img saveButton" *ngIf="question.timer.isModeEdit == true" (click)="question.timer.isModeEdit = false">
           <img
             src="assets/img/save.svg">
         </div>
@@ -56,7 +56,7 @@
               <img
                 src="assets/img/edit.svg">
             </div>
-            <div class="img" *ngIf="proposition.isModeEdit == true" (click)="proposition.isModeEdit = false">
+            <div class="img saveButton" *ngIf="proposition.isModeEdit == true" (click)="proposition.isModeEdit = false">
               <img
                 src="assets/img/save.svg">
             </div>

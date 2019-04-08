@@ -141,10 +141,13 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .deleteButton {
-  background-color: #d44949;
+  background-color: #d4595f;
 }
 .editButton{
-  background: royalblue;
+
+}
+.saveButton{
+  background: #89c778;
 }
 
 .timerLabelLeft, .timerLabelRight {
@@ -160,4 +163,7 @@ input[type="number"]::-webkit-outer-spin-button {
 #mainQuestion, question{
   box-sizing: border-box;
   height: 100%;
+}
+.inputTimer{
+  text-align: center;
 }

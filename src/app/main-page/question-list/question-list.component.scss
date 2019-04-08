@@ -21,9 +21,9 @@
 }
 
 .question-list {
-  height: auto;
+  height: 80%;
   div:nth-child(even) {
-    background-color: #fff!important;
+    background-color: #fff;
   }
   overflow-y: scroll;
   scrollbar-width: thin;
@@ -56,14 +56,16 @@
 }
 
 #z_plus {
+  user-select: none;
+  background-color: #6a9ed4;
   text-align: center;
   line-height: 50px;
   font-size: 30px;
+  border-radius: 100%;
 }
 
 #z_button {
-
-  background-color: #6a9ed4;
+  user-select: none;
   height: 50px;
   width: 50px;
   outline: 0;
@@ -88,6 +90,5 @@
     -webkit-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
-
   }
 }

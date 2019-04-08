@@ -6,7 +6,7 @@
               class="questionnaireNameLabel">{{questionnaire.name}}</span>
       </div>
       <div class="element element2">
-        <input *ngIf="questionnaire.nameModeEdit == true" type="text" [(ngModel)]="questionnaire.name">
+        <input class="questionTitleInput" *ngIf="questionnaire.nameModeEdit == true" type="text" [(ngModel)]="questionnaire.name">
       </div>
       <div class="element element3">
         <div *ngIf="questionnaire.nameModeEdit == undefined || questionnaire.nameModeEdit == false"
@@ -44,7 +44,7 @@
           class="questionnaireTimerLabel">{{questionnaire.timer}}</span>
     </div>
     <div class="element element10">
-      <input *ngIf="questionnaire.timerModeEdit == true" type="number" [(ngModel)]="questionnaire.timer">
+      <input class="inputTimerHead" *ngIf="questionnaire.timerModeEdit == true" type="number" [(ngModel)]="questionnaire.timer">
       <p class="secondTimer">s</p>
     </div>
     <div class="element element11">
@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="element element12">
-      <div *ngIf="questionnaire.timerModeEdit == true" class="img deleteButton">
+     <div *ngIf="questionnaire.timerModeEdit == true" class="img saveButton">
         <img class="saveLogo" (click)="questionnaire.timerModeEdit = false; onChange()" src="assets/img/save.svg">
       </div>
     </div>
