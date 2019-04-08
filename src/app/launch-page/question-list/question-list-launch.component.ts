@@ -16,6 +16,7 @@ export class QuestionListLaunchComponent implements OnInit{
       this.selectedQuestion = this.questionnaire.questions[0];
       this.questionnaire.questions[0].isLoaded = true;
     }
+
   }
 
   public goNextQuestion(){

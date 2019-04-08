@@ -4,6 +4,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginPageComponent} from './loginPage/loginPage.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import {FooterComponent} from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 
@@ -49,7 +51,8 @@ import { QuestHeaderStatComponent} from "./stat-page/quest-header/quest-header-s
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     FooterComponent,

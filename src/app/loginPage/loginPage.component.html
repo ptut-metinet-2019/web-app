@@ -40,8 +40,8 @@
           <div class="border passwordBorder"></div>
         </div>
         <button class="submitButton" type="submit" [disabled]="!registerForm.valid">Submit</button>
-        <div class="error confirmPasswordError" *ngIf="confirmPasswordError">Les mots de passe ne correspondent pas
-        </div>
+        <div class="error confirmPasswordError" *ngIf="confirmPasswordError">Les mots de passe ne correspondent pas</div>
+        <div class="error confirmPasswordError">{{registerMessageError}}</div>
       </form>
     </div>
   </div>
