@@ -1,9 +1,10 @@
 <div id="mainQuestHeader">
   <div style="float: left;">
     <span class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
-    <button *ngIf="!isPaused" (click)="pause()">Pause</button>
+    <button *ngIf="!isPaused && !isStoped" (click)="pause()">Pause</button>
     <button *ngIf="isPaused" (click)="resume()">Reprendre</button>
-    <button [routerLink]="['/dashboard']">Stop</button>
+    <button *ngIf="!isStoped" (click)="stop()">Stop</button>
+    <button *ngIf="isStoped" [routerLink]="['/dashboard']">Retour à l'édition</button>
   </div>
 
 </div>

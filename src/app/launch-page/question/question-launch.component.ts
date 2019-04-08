@@ -10,7 +10,7 @@ export class QuestionLaunchComponent implements OnInit{
   @Input("question") question: any;
   parentElement: QuestionListLaunchComponent;
   public cpt: any;
-  public timerValue: number;
+  public timerValue: any;
   public isPaused = false;
   public isStoped = false;
 
@@ -51,7 +51,9 @@ export class QuestionLaunchComponent implements OnInit{
   }
 
   public stop(){
+    this.isPaused = true;
     this.isStoped = true;
+    this.timerValue = "Questionnaire arreté";
   }
 
   public goNextQuestion(){

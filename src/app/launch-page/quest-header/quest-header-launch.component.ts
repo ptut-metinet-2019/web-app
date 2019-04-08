@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class QuestHeaderLaunchComponent implements OnInit{
   @Input("questionnaire") questionnaire: any;
   public isPaused = false;
+  public isStoped = false;
   parentElement: LaunchPageComponent;
 
   constructor(@Inject(forwardRef(() => LaunchPageComponent)) private _parent: LaunchPageComponent,
@@ -33,6 +34,7 @@ export class QuestHeaderLaunchComponent implements OnInit{
 
   public stop(){
     this.parentElement.stop();
+    this.isStoped = true;
   }
 
 }
