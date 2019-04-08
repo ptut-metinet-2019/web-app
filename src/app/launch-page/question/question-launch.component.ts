@@ -54,6 +54,7 @@ export class QuestionLaunchComponent implements OnInit{
   public stop(){
     this.isPaused = true;
     this.isStoped = true;
+    clearInterval(this.timer);
     this.timerValue = "Questionnaire arreté";
   }
 

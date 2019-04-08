@@ -27,17 +27,6 @@ export class QuestionListLaunchComponent implements OnInit{
     }
   }
 
-  public startTimer(){
-    let cptMax = parseInt(this.questionLaunchComponent.cpt)+1;
-    setInterval(function(){
-      if(!this.questionLaunchComponent.isPaused && !this.questionLaunchComponent.isStoped && this.questionLaunchComponent.timerValue > 0){
-        this.questionLaunchComponent.timerValue -= 1;
-      }else{
-        this.questionLaunchComponent.cptMax += 1;
-      }
-    }.bind(this),1000);
-  }
-
   public pause(){
     this.questionLaunchComponent.pause();
   }
