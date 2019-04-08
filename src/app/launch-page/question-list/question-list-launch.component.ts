@@ -16,6 +16,7 @@ export class QuestionListLaunchComponent implements OnInit{
       this.selectedQuestion = this.questionnaire.questions[0];
       this.questionnaire.questions[0].isLoaded = true;
     }
+
   }
 
   public goNextQuestion(){
@@ -24,6 +25,17 @@ export class QuestionListLaunchComponent implements OnInit{
       this.selectedQuestion = this.questionnaire.questions[currentIndex+1];
       this.questionnaire.questions[currentIndex+1].isLoaded = true;
     }
+  }
+
+  public startTimer(){
+    let cptMax = parseInt(this.questionLaunchComponent.cpt)+1;
+    setInterval(function(){
+      if(!this.questionLaunchComponent.isPaused && !this.questionLaunchComponent.isStoped && this.questionLaunchComponent.timerValue > 0){
+        this.questionLaunchComponent.timerValue -= 1;
+      }else{
+        this.questionLaunchComponent.cptMax += 1;
+      }
+    }.bind(this),1000);
   }
 
   public pause(){
