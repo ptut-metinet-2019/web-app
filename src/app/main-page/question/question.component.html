@@ -27,7 +27,7 @@
       <div class="timerLabel">
         <p class="timerLabelLeft">Timer :</p>
         <p class="timerLabelRight" *ngIf="question.timer.isModeEdit == false">{{question.timer.value}}</p>
-        <input *ngIf="question.timer.isModeEdit == true" type="text" [(ngModel)]="question.timer.value">
+        <input *ngIf="question.timer.isModeEdit == true" type="number" [(ngModel)]="question.timer.value">
         <p>s</p>
       </div>
       <div class="timerButtons">

@@ -44,7 +44,7 @@
           class="questionnaireTimerLabel">{{questionnaire.timer.value}}</span>
     </div>
     <div class="element element10">
-      <input *ngIf="questionnaire.timer.isModeEdit == true" type="text" [(ngModel)]="questionnaire.timer.value">
+      <input *ngIf="questionnaire.timer.isModeEdit == true" type="number" [(ngModel)]="questionnaire.timer.value">
       <p class="secondTimer">s</p>
     </div>
     <div class="element element11">
