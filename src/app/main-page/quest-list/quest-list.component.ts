@@ -37,6 +37,11 @@ export class QuestListComponent implements OnInit{
   }
 
   public addNewQuestionnaire() {
+    if(this.newQuestionnaireName == undefined || this.newQuestionnaireName == ""){
+      this.newQuestionnaireName = "";
+      this.addingNewQuestionnaire = false;
+      return null;
+    }
     let newQuestionnaire = {
       id: this.questionnairesList.length + 1,
       timer:{
@@ -44,7 +49,7 @@ export class QuestListComponent implements OnInit{
         isModeEdit: false
       },
       name: {
-        value: this.newQuestionnaireName,
+        value: this.newQuestionnaireName.substring(0,45),
         isModeEdit: false
       },
       questions: [

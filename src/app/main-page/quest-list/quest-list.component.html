@@ -9,7 +9,7 @@
     </div>
   </ng-container>
   <ng-container *ngIf="addingNewQuestionnaire == true">
-    <input type="text" [(ngModel)]="newQuestionnaireName">
+    <input type="text" [(ngModel)]="newQuestionnaireName" maxlength="45">
     <div class="button-new-tour">
       <div (click)="addNewQuestionnaire()" class="button">
         <a>
