@@ -66,8 +66,7 @@ export class LoginPageComponent implements OnInit {
         this.invalidCredentialsError = true;
         this.confirmPasswordError = false;
       }else if(result.token != undefined){
-        this.token = result.token;
-        this.router.navigate(['/', 'dashboard']);
+        this.onLoginSuccess(result.token);
       }else{
         this.invalidCredentialsError = true;
         this.confirmPasswordError = false;
@@ -88,14 +87,18 @@ export class LoginPageComponent implements OnInit {
     this.restService.register(jsonObject).subscribe((result: any) => {
       console.info("REGISTER RESULT = ",result);
       if(result != undefined && result.token != undefined){
-        this.token = result.token;
-        this.router.navigate(['/', 'dashboard']);
+        this.onLoginSuccess(result.token);
       }
       else{
         this.registerMessageError = result.error.error;
         return false;
       }
     });
+  }
+
+  private onLoginSuccess(token: any){
+    this.token = token;
+    this.router.navigate(['/', 'dashboard']);
   }
 }
 
