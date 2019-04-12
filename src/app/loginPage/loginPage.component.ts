@@ -3,6 +3,14 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import { RestService} from "../rest.service";
 
+import {Connection} from '../connection/connection.service';
+import {Request} from '../connection/request.model';
+import {Response} from '../connection/response.model';
+import {Questionnaire} from '../model/questionnaire.model';
+import {QuestionnaireEventListener, QuestionnaireDeletedEvent, QuestionnaireCreatedEvent} from '../connection/event/questionnaire.model';
+import {ConnectedEvent, DisconnectedEvent, ConnectionEventListener} from '../connection/event/connection.model';
+import {WebSocket} from "../web-socket.service";
+
 @Component({
   selector: 'app-loginpage',
   templateUrl: './loginpage.component.html',
@@ -12,7 +20,6 @@ export class LoginPageComponent implements OnInit {
   public registerMessageError = "";
   public confirmPasswordError = false;
   public invalidCredentialsError = false;
-  public token: any;
   loginForm = new FormGroup({
     loginEmail: new FormControl('', [
         Validators.required,
@@ -39,10 +46,12 @@ export class LoginPageComponent implements OnInit {
     ])
   });
 
-  constructor(private router: Router, private restService: RestService) {
+  constructor(private router: Router, private restService: RestService, private webSocket: WebSocket) {
+
   }
 
   ngOnInit(): void {
+
   }
 
   onRegisterSubmit() {
@@ -60,14 +69,12 @@ export class LoginPageComponent implements OnInit {
       password: this.loginForm.getRawValue().loginPassword
     }
     this.restService.login(jsonObject).subscribe((result: any) => {
-      console.info("LOGIN RESULT = ",result);
       if(result.status === 401){
         //BAD LOGIN OR PASSWORD
         this.invalidCredentialsError = true;
         this.confirmPasswordError = false;
       }else if(result.token != undefined){
-        this.token = result.token;
-        this.router.navigate(['/', 'dashboard']);
+        this.onLoginSuccess(result.token);
       }else{
         this.invalidCredentialsError = true;
         this.confirmPasswordError = false;
@@ -86,16 +93,18 @@ export class LoginPageComponent implements OnInit {
       password: this.registerForm.getRawValue().registerPassword
     }
     this.restService.register(jsonObject).subscribe((result: any) => {
-      console.info("REGISTER RESULT = ",result);
       if(result != undefined && result.token != undefined){
-        this.token = result.token;
-        this.router.navigate(['/', 'dashboard']);
+        this.onLoginSuccess(result.token);
       }
       else{
         this.registerMessageError = result.error.error;
         return false;
       }
     });
+  }
+
+  private onLoginSuccess(token: any){
+    this.webSocket.initLoginConnexion(token);
   }
 }
 

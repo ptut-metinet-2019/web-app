@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {QuestionListComponent} from "../question-list/question-list.component";
+import {WebSocket} from "../../web-socket.service";
+import {Questionnaire} from "../../model/questionnaire.model";
 
 @Component({
   selector: 'quest-list',
@@ -8,13 +10,18 @@ import {QuestionListComponent} from "../question-list/question-list.component";
 })
 export class QuestListComponent implements OnInit{
   @ViewChild("questionList") questionListComponent: QuestionListComponent;
-  questionnairesList: any[];
+  questionnairesList: Questionnaire[];
   selectedQuestionnaire: any;
   addingNewQuestionnaire: boolean;
   newQuestionnaireName: any;
 
+  constructor(private webSocket: WebSocket){
+
+  }
+
   ngOnInit(){
-    this.initQuestionnaireList();
+    this.questionnairesList = [];
+    this.initQuestionnaireListFromDB();
   }
 
   public clearQuestion(){
@@ -22,10 +29,8 @@ export class QuestListComponent implements OnInit{
   }
 
   public deleteQuestionnaire(questionnnaire){
-    if(this.selectedQuestionnaire == questionnnaire){
-      this.selectedQuestionnaire = undefined;
-    }
-    this.questionnairesList.splice(this.questionnairesList.indexOf(questionnnaire),1);
+    console.info(questionnnaire);
+    this.webSocket.deleteQuestionnaire(questionnnaire.getId());
   }
 
   public loadQuestionnaire(questionnaire: any){
@@ -37,276 +42,51 @@ export class QuestListComponent implements OnInit{
   }
 
   public addNewQuestionnaire() {
+    if(this.newQuestionnaireName == undefined || this.newQuestionnaireName == ""){
+      this.newQuestionnaireName = "";
+      this.addingNewQuestionnaire = false;
+      return null;
+    }
     let newQuestionnaire = {
-      id: this.questionnairesList.length + 1,
-      timer:{
-        value: "60",
-        isModeEdit: false
-      },
-      name: {
-        value: this.newQuestionnaireName,
-        isModeEdit: false
-      },
-      questions: [
-        {
-          name: {
-            value: "Votre première question",
-            isModeEdit: false
-          },
-          propositions: [
-            {
-              label: "Réponse numéro 1",
-              isModeEdit: false
-            }
-          ],
-          timer: {
-            value: "60",
-            isModeEdit: false
-          }
-        }]
+      name: this.newQuestionnaireName,
+      timer: 60,
+      autoplayTimeout: 60
     };
-    this.questionnairesList.push(newQuestionnaire);
-    this.newQuestionnaireName = "";
-    this.addingNewQuestionnaire = false;
-    this.selectedQuestionnaire = newQuestionnaire;
+    this.webSocket.addQuestionnaire(newQuestionnaire);
   }
 
-  public initQuestionnaireList(){
-    this.questionnairesList = [
-      //QUESTIONNAIRE 1
-      {
-        id: 1,
-        name: {
-          value: "Questionnaire 1",
-          isModeEdit: false
-        },
-        timer:{
-          value: "60",
-          isModeEdit: false
-        },
-        questions: [
-          {
-            name: {
-              value: "Ceci est la question 1",
-              isModeEdit: false
-            },
-            propositions: [
-              {
-                label: "Ceci est la réponse 1",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 2",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 3",
-                isModeEdit: false
-              }
-            ],
-            timer: {
-              value: "60",
-              isModeEdit: false
-            }
-          },
-          {
-            name: {
-              value: "Ceci est la question 2",
-              isModeEdit: false
-            },
-            propositions: [
-              {
-                label: "Ceci est la réponse 1",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 2",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 3",
-                isModeEdit: false
-              }
-            ],
-            timer: {
-              value: "600",
-              isModeEdit: false
-            }
-          },
-          {
-            name: {
-              value: "Ceci est la question 3",
-              isModeEdit: false
-            },
-            propositions: [
-              {
-                label: "Tres bien",
-                isModeEdit: false
-              },
-              {
-                label: "Moyen",
-                isModeEdit: false
-              },
-              {
-                label: "Pas bon",
-                isModeEdit: false
-              }
-            ],
-            timer: {
-              value: "10",
-              isModeEdit: false
-            }
-          }
-        ]
-      },
-      //QUESTIONNAIRE 2
-      {
-        id: 2,
-        name: {
-          value: "Questionnaire 2",
-          isModeEdit: false
-        },
-        timer:{
-          value: "",
-          isModeEdit: false
-        },
-        questions: [
-          {
-            name: {
-              value: "Ceci est la question 1 du questionnaire 2Ceci est la question 1 du questionnaire 2Ceci est la question 1 du questionnaire 2Ceci est la question 1 du questionnaire 2",
-              isModeEdit: false
-            },
-            propositions: [
-              {
-                label: "Ceci est la réponse 1",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 2",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 3",
-                isModeEdit: false
-              }
-            ],
-            timer: {
-              value: "60",
-              isModeEdit: false
-            }
-          },
-          {
-            name: {
-              value: "Ceci est la question 2 du questionnaire 2",
-              isModeEdit: false
-            },
-            propositions: [
-              {
-                label: "Ceci est la réponse 1",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 2",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 3",
-                isModeEdit: false
-              }
-            ],
-            timer: {
-              value: "600",
-              isModeEdit: false
-            }
-          },
-          {
-            name: {
-              value: "Ceci est la question 3 du questionnaire 2",
-              isModeEdit: false
-            },
-            propositions: [
-              {
-                label: "Tres bien",
-                isModeEdit: false
-              },
-              {
-                label: "Moyen",
-                isModeEdit: false
-              },
-              {
-                label: "Pas bon",
-                isModeEdit: false
-              }
-            ],
-            timer: {
-              value: "0",
-              isModeEdit: false
-            }
-          }
-        ]
-      },
-      //QUESTIONNAIRE 3
-      {
-        id: 3,
-        name: {
-          value: "Questionnaire 3",
-          isModeEdit: false
-        },
-        timer:{
-          value: "60",
-          isModeEdit: false
-        },
-        questions: [
-          {
-            name: {
-              value: "Ceci est la question 1 du questionnaire 3",
-              isModeEdit: false
-            },
-            propositions: [
-              {
-                label: "Ceci est la réponse 1",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 2",
-                isModeEdit: false
-              },
-              {
-                label: "Ceci est la réponse 3",
-                isModeEdit: false
-              }
-            ],
-            timer: {
-              value: "60",
-              isModeEdit: false
-            }
-          },
-          {
-            name: {
-              value: "Ceci est la question 2 du questionnaire 3",
-              isModeEdit: false
-            },
-            propositions: [
-              {
-                label: "Tres bien",
-                isModeEdit: false
-              },
-              {
-                label: "Moyen",
-                isModeEdit: false
-              },
-              {
-                label: "Pas bon",
-                isModeEdit: false
-              }
-            ],
-            timer: {
-              value: "10",
-              isModeEdit: false
-            }
-          }
-        ]
-      }
-    ];
+  public initQuestionnaireListFromDB(){
+    this.webSocket.getAllQuestionnaires(this.fillDatas.bind(this));
   }
+
+  public fillDatas(datas?: any){
+    for(let data of datas){
+      this.questionnairesList.push(Questionnaire.fromJSONObject(data));
+    }
+    this.initQuestionnaireListEvents();
+  }
+
+  public initQuestionnaireListEvents(){
+    this.webSocket.initQuestionnaireListEvent(this.addingQuestionnaireCallback.bind(this), this.deletedQuestionnaireCallback.bind(this));
+  }
+
+  public addingQuestionnaireCallback(questionnaire: any){
+    this.questionnairesList.push(questionnaire);
+    this.newQuestionnaireName = "";
+    this.addingNewQuestionnaire = false;
+    this.selectedQuestionnaire = questionnaire;
+  }
+
+  public deletedQuestionnaireCallback(questionnaireId: any){
+    for(let questionnaire of this.questionnairesList){
+      if(questionnaire.getId() === questionnaireId){
+        if(questionnaire == this.selectedQuestionnaire){
+          this.selectedQuestionnaire = undefined;
+        }
+        this.questionnairesList.splice(this.questionnairesList.indexOf(questionnaire),1);
+        return null;
+      }
+    }
+  }
+
 }
