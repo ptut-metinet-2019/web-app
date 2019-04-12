@@ -1,6 +1,6 @@
 export class Questionnaire
 {
-	private id: string;
+	  private id: string;
     private name: string;
     private timer: number;
     private autoplayTimeout: number;

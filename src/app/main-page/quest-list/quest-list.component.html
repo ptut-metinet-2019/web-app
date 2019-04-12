@@ -5,7 +5,7 @@
   </div>
   <ng-container *ngFor="let questionnaire of questionnairesList">
     <div class="inputLabel" (click)="loadQuestionnaire(questionnaire)">
-      <span class="questionnaireLabel">{{questionnaire.name.value}}</span>
+      <span class="questionnaireLabel">{{questionnaire.name}}</span>
     </div>
   </ng-container>
   <ng-container *ngIf="addingNewQuestionnaire == true">

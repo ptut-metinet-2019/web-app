@@ -47,33 +47,32 @@ export class Connection
 			try
 			{
 				let data = JSON.parse(event.data);
+            if(data.type === "response")
+            {
+              let response: Response = new Response(data.request, data.status, data.data);
+              let request: Request = that.requests.get(response.getRequestId());
 
-                if(data.type === "response")
+              if(request !== null)
+              {
+                request.setResponse(response);
+                that.requests.delete(request.getId());
+              }
+            }
+            else if(data.type === "event")
+            {
+                let event: Event = null;
+
+                if(data.target === "questionnaire")
                 {
-                	let response: Response = new Response(data.request, data.status, data.data);
-                	let request: Request = that.requests.get(response.getRequestId());
-
-                	if(request !== null)
-                	{
-                		request.setResponse(response);
-                		that.requests.delete(request.getId());
-                	}
+                    if(data.action === "create")
+                        event = new QuestionnaireCreatedEvent(Questionnaire.fromJSONObject(data.data));
+                    else if (data.action === 'delete')
+                        event = new QuestionnaireDeletedEvent(data.data._id);
                 }
-                else if(data.type === "event")
-                {
-                    let event: Event = null;
 
-                    if(data.target === "questionnaire")
-                    {
-                        if(data.action === "create")
-                            event = new QuestionnaireCreatedEvent(Questionnaire.fromJSONObject(data.data));
-                        else if (data.action === 'delete')
-                            event = new QuestionnaireDeletedEvent(data.data._id);
-                    }
-
-                    if(event !== null)
-                        that.emitEvent(event);
-                }
+                if(event !== null)
+                    that.emitEvent(event);
+            }
 			}
 			catch(error)
 			{
