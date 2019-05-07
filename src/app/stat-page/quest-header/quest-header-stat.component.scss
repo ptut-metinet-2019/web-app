@@ -5,17 +5,18 @@
   height: auto;
 }
 #mainQuestHeader{
-  width: 90%;
-  background-color: lightpink;
-  border: black 2px;
-  height: 10vh;
-  float: left;
+  width: 100%;
+  box-sizing: border-box;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  margin: 0;
+  background-color: #544E71;
+  color: white;
+
 }
-
-.questionnaireTimerLabel{
-
-}
-
-.timerButtons{
-
+.boutonHeader{
+  margin-left: 5px;
 }

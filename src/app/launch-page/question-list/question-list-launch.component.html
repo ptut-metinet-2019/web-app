@@ -1,13 +1,15 @@
 <div id="mainQuestionList">
-  <div>
+  <div class="questionListTitle">
     Questions
   </div>
   <ng-container *ngIf="questionnaire != undefined">
-    <ng-container *ngFor="let question of questionnaire.questions">
-      <ng-container *ngIf="question.isLoaded != undefined && question.isLoaded == true">
-        <div class="questionnaireLabel">{{question.name.value}}</div>
+    <div class="mainQuestList">
+      <ng-container *ngFor="let question of questionnaire.questions">
+        <ng-container *ngIf="question.isLoaded != undefined && question.isLoaded == true">
+          <div class="questionnaireLabel"><p>{{question.name.value}}</p></div>
+        </ng-container>
       </ng-container>
-    </ng-container>
+    </div>
   </ng-container>
 </div>
 

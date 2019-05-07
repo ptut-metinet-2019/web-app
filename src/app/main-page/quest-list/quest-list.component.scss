@@ -6,8 +6,10 @@
 }
 #mainQuestList {
   margin: 0;
-  background-color: rgb(57, 51, 81);;
-  border: black 2px;
+  background-color: rgb(57, 51, 81);
+  border-right: 3px solid rgb(42, 41, 81);
+  border-bottom: 3px solid rgb(42, 41, 81);
+  border-left: 3px solid rgb(42, 41, 81);
   box-sizing: border-box;
   height: 100%;
   width: 20%;
@@ -15,15 +17,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-}
-
-#mainQuestion {
-  height: auto;
-  width: 79%;
-  background-color: lightyellow;
-  border: black 2px;
-  height: calc(100vh - 120px);
 }
 
 quest-header {
@@ -184,31 +177,10 @@ body.show {
 .inputLabel :hover {
   width: auto;
   height: auto;
-  animation-name: example;
   font-weight: bold;
   cursor: pointer;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate-reverse;
 }
-
-@keyframes example {
-  0% {
-    color: #efb8f7;
-  }
-  20% {
-    color: #f7d7b8;
-  }
-  40% {
-    color: #f7f4b8;
-  }
-  60% {
-    color: #b8d7f7;
-  }
-  80% {
-    color: #bab8f7;
-  }
-  100% {
-    color: #bff7b8;
-  }
+.newQuestionnaireButton{
+  margin-top: 10px;
+  margin-bottom: 5px;
 }

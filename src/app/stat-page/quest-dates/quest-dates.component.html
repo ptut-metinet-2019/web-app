@@ -1,14 +1,18 @@
 <div id="mainQuestionList">
-  <div>
+  <div class="lancementList">
     Mes lancements
   </div>
-  <ng-container *ngIf="questionnaire != undefined">
-    <ng-container *ngFor="let lancement of questionnaire.lancements">
-      <div (click)="selectLancement(lancement)">
-        <span class="questionnaireLabel">{{lancement.date}}</span>
-      </div>
+  <div class="lancementListBody">
+    <ng-container *ngIf="questionnaire != undefined">
+      <ng-container *ngFor="let lancement of questionnaire.lancements">
+        <div class="singleQuestion">
+          <div class="hoverQuestion" (click)="selectLancement(lancement)">
+            <span class="questionnaireLabel">{{lancement.date}}</span>
+          </div>
+        </div>
+      </ng-container>
     </ng-container>
-  </ng-container>
+  </div>
 </div>
 
 <div id="mainQuestion">
