@@ -85,9 +85,11 @@ export class QuestListComponent implements OnInit{
 
   public addingQuestionnaireCallback(questionnaire: any){
     this.questionnairesList.push(questionnaire);
-    this.newQuestionnaireName = "";
-    this.addingNewQuestionnaire = false;
-    this.selectedQuestionnaire = questionnaire;
+    if(this.newQuestionnaireName != "" || this.addingNewQuestionnaire == true){
+      this.newQuestionnaireName = "";
+      this.addingNewQuestionnaire = false;
+      this.selectedQuestionnaire = questionnaire;
+    }
   }
 
   public deletedQuestionnaireCallback(questionnaireId: any){
@@ -104,8 +106,8 @@ export class QuestListComponent implements OnInit{
 
   public updatedQuestionnaireCallback(quest: any){
     for(let questionnaire of this.questionnairesList){
-      if(questionnaire.getId() === quest._id){
-        questionnaire = Questionnaire.fromJSONObject(quest);
+      if(questionnaire.getId() == quest._id){
+        Object.assign(questionnaire, Questionnaire.fromJSONObject(quest));
       }
     }
   }

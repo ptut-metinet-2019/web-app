@@ -4,7 +4,11 @@ import {Questionnaire} from '../model/questionnaire.model';
 
 import {Event, EventListener} from './event/event.model';
 import {ConnectedEvent, DisconnectedEvent} from './event/connection.model';
-import {QuestionnaireCreatedEvent, QuestionnaireDeletedEvent} from './event/questionnaire.model';
+import {
+  QuestionnaireCreatedEvent,
+  QuestionnaireDeletedEvent,
+  QuestionnaireUpdatedEvent
+} from './event/questionnaire.model';
 
 export class Connection
 {
@@ -67,7 +71,9 @@ export class Connection
                     if(data.action === "create")
                         event = new QuestionnaireCreatedEvent(Questionnaire.fromJSONObject(data.data));
                     else if (data.action === 'delete')
-                        event = new QuestionnaireDeletedEvent(data.data._id);
+                      event = new QuestionnaireDeletedEvent(data.data._id);
+                    else if (data.action === 'update')
+                      event = new QuestionnaireUpdatedEvent(data.data);
                 }
 
                 if(event !== null)

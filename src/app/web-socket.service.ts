@@ -53,7 +53,7 @@ export class WebSocket {
     {
       // Questionnaire supprimé : event.getQuestionnaireId()
       deletedCallback(event.getQuestionnaireId());
-    }.bind(this), function onDeleted(event: QuestionnaireUpdatedEvent)
+    }.bind(this), function onUpdated(event: QuestionnaireUpdatedEvent)
     {
       // Questionnaire mis à jour : event.getQuestionnaire()
       updatedCallback(event.getQuestionnaire());
