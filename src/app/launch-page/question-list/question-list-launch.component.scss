@@ -1,16 +1,13 @@
-*{
+* {
   width: auto;
   height: auto;
   margin: 0;
   padding: 0;
 }
-#mainQuestionList{
-  position: absolute;
-  margin-top: 10vh;
-  min-width: 10%;
-  max-width: 10%;
+
+#mainQuestionList {
+  box-sizing: border-box;
+  height: 100%;
+  width: 20%;
   background-color: lightgreen;
-  border: black 2px;
-  height: calc(100vh - 120px);
-  float: left;
 }

@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
 #mainQuestHeader {
   margin: 0;
   box-sizing: border-box;
@@ -87,14 +93,25 @@ img {
   height: auto;
 }
 .launchButton{
-  background: white;
+  background: #89c778;
 }
 .deleteButton{
-  background: #d44949;
+  background: #d4595f;
 }
 .statsButton{
-  background: orange;
+  background: #e2b278;
 }
 .editButton{
-  background: royalblue;
+
+}
+.saveButton{
+  background: #89c778;
+}
+.questionTitleInput{
+  font-size: x-large;
+  text-align: center;
+}
+.inputTimerHead{
+  font-size: large;
+  text-align: center;
 }
