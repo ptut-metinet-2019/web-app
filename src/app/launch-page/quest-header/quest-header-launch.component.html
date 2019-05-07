@@ -1,10 +1,11 @@
 <div id="mainQuestHeader">
-  <div style="float: left;">
+  <div class="headContent">
     <span class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
-    <button *ngIf="!isPaused && !isStoped" (click)="pause()">Pause</button>
-    <button *ngIf="isPaused" (click)="resume()">Reprendre</button>
-    <button *ngIf="!isStoped" (click)="stop()">Stop</button>
-    <button *ngIf="isStoped" [routerLink]="['/dashboard']">Retour à l'édition</button>
+
+    <img src="" alt="[IMG_PAUSE]" *ngIf="!isPaused && !isStoped" (click)="pause()">
+    <img src="" alt="[IMG_RESUME]" *ngIf="isPaused" (click)="resume()">
+    <img src="" alt="[IMG_STOP]" *ngIf="!isStoped" (click)="stop()">
+    <img src="" alt="[IMG_DASHBOARD]" *ngIf="isStoped" [routerLink]="['/dashboard']">
   </div>
 
 </div>

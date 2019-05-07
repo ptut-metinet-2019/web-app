@@ -5,8 +5,13 @@
   padding: 0;
 }
 #mainQuestion{
-  box-sizing: border-box;
-  height: 100%;
-  width: 80%;
-  background-color: lightyellow;
+  margin-left: 40px;
+  margin-top: 40px;
+  font-size: 30px;
+}
+.questionLabel{
+  font-weight: bold;
+}
+.propositionLabel{
+  margin: 10px;
 }

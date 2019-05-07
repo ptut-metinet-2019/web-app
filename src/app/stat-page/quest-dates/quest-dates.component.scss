@@ -5,13 +5,50 @@
   height: auto;
 }
 #mainQuestionList{
-  position: absolute;
-  margin-top: 10vh;
-  margin-left: 10%;
-  min-width: 10%;
-  max-width: 10%;
-  background-color: lightgreen;
-  border: black 2px;
-  height: calc(100vh - 120px);
-  float: left;
+  width: 30%;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0;
+  background-color: #c2c2c2;
+}
+#mainQuestion{
+  width: 70%;
+  box-sizing: border-box;
+  height: 100%;
+}
+.lancementList{
+  width: auto;
+  height: 2%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.singleQuestion :hover{
+  background-color: #b0b0b0;
+  width: auto;
+  height: auto;
+
+}
+.hoverQuestion{
+  padding: 8px;
+  text-align: justify;
+}
+.singleQuestion{
+  background-color: #ddd;
+}
+.lancementListBody {
+
+  height: 95%;
+
+  div:nth-child(even) {
+    background-color: #fff;
+  }
+
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  margin: 0;
+  margin-top: 10px;
+  width: 100%;
 }

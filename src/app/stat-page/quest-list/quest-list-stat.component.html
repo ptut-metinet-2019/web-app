@@ -1,13 +1,14 @@
 <div id="mainQuestList">
-  <div>
-    Mes questionnaires
+  <div class="form-logo-flex">
+    <img class="form-logo" src="assets/img/icon_questionnaire2.svg">
+    <p class="form-title">QUESTIONNAIRES</p>
   </div>
   <ng-container *ngFor="let questionnaire of questionnairesList">
-    <div (click)="loadQuestionnaire(questionnaire)">
+    <div class="questionnaireLabelDiv" (click)="loadQuestionnaire(questionnaire)">
       <span class="questionnaireLabel">{{questionnaire.name.value}}</span>
     </div>
   </ng-container>
 </div>
-
+<div class="flexContainer">
 <quest-header-stat #statHeader [questionnaire]="selectedQuestionnaire"></quest-header-stat>
 <quest-dates #questionDatesList [questionnaire]="selectedQuestionnaire"></quest-dates>
