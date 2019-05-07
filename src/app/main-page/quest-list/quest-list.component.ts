@@ -33,12 +33,22 @@ export class QuestListComponent implements OnInit{
     this.webSocket.deleteQuestionnaire(questionnnaire.getId());
   }
 
+  public updateQuestionnaire(questionnnaire){
+    console.info(questionnnaire);
+    this.webSocket.updateQuestionnaire(questionnnaire, this.updatedQuestionnaireCallback.bind(this));
+  }
+
   public loadQuestionnaire(questionnaire: any){
-    //TODO : Load QCM via BD à partir du param questionnaire
     if(this.selectedQuestionnaire != questionnaire){
       this.clearQuestion();
       this.selectedQuestionnaire = questionnaire;
+      //TODO : Load QCM via BD à partir du param questionnaire
+      this.webSocket.loadQuestionnaire(this.selectedQuestionnaire.id, this.onLoadQuestionnaire.bind(this));
     }
+  }
+
+  public onLoadQuestionnaire(questionnaire){
+    console.info("onLoadQuestionnaire", questionnaire);
   }
 
   public addNewQuestionnaire() {
@@ -64,10 +74,13 @@ export class QuestListComponent implements OnInit{
       this.questionnairesList.push(Questionnaire.fromJSONObject(data));
     }
     this.initQuestionnaireListEvents();
+    if(this.questionnairesList.length > 0){
+      this.selectedQuestionnaire = this.questionnairesList[0];
+    }
   }
 
   public initQuestionnaireListEvents(){
-    this.webSocket.initQuestionnaireListEvent(this.addingQuestionnaireCallback.bind(this), this.deletedQuestionnaireCallback.bind(this));
+    this.webSocket.initQuestionnaireListEvent(this.addingQuestionnaireCallback.bind(this), this.deletedQuestionnaireCallback.bind(this), this.updatedQuestionnaireCallback.bind(this));
   }
 
   public addingQuestionnaireCallback(questionnaire: any){
@@ -85,6 +98,14 @@ export class QuestListComponent implements OnInit{
         }
         this.questionnairesList.splice(this.questionnairesList.indexOf(questionnaire),1);
         return null;
+      }
+    }
+  }
+
+  public updatedQuestionnaireCallback(quest: any){
+    for(let questionnaire of this.questionnairesList){
+      if(questionnaire.getId() === quest._id){
+        questionnaire = Questionnaire.fromJSONObject(quest);
       }
     }
   }
