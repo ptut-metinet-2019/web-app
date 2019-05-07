@@ -7,7 +7,7 @@
     <div class="flexEditQuestionTitle">
       <div class="inputQuestionTitle">
         <p *ngIf="question.name.isModeEdit == false" class="questionLabel">{{question.name.value}}</p>
-        <textarea *ngIf="question.name.isModeEdit == true" type="text" [(ngModel)]="question.name.value"></textarea>
+        <textarea *ngIf="question.name.isModeEdit == true" type="text" maxlength="120" [(ngModel)]="question.name.value"></textarea>
       </div>
       <div class="nameButtons">
         <div class="img editButton" *ngIf="question.name.isModeEdit == false" (click)="question.name.isModeEdit = true">
@@ -49,7 +49,15 @@
         <div class="flexEditReponse">
           <div class="propositionDiv">
             <p *ngIf="proposition.isModeEdit == false" class="propositionLabel">{{proposition.label}}</p>
-            <textarea *ngIf="proposition.isModeEdit == true" type="text" [(ngModel)]="proposition.label"></textarea>
+            <textarea *ngIf="proposition.isModeEdit == true" type="text" maxlength="120" [(ngModel)]="proposition.label"></textarea>
+          </div>
+          <div class="img goodProposition" *ngIf="proposition.goodProposition == true" (click)="proposition.goodProposition = false">
+            <img
+              src="assets/img/verified.svg">
+          </div>
+          <div class="img badProposition" *ngIf="proposition.goodProposition != true" (click)="proposition.goodProposition = true">
+            <img
+              src="assets/img/cancel.svg">
           </div>
           <div class="propositionButtons">
             <div class="img editButton" *ngIf="proposition.isModeEdit == false" (click)="proposition.isModeEdit = true">
