@@ -25,11 +25,7 @@ export class QuestHeaderComponent implements OnInit{
     this.parentElement.deleteQuestionnaire(this.questionnaire);
   }
 
-  public toLaunchComponent(){
-    this.router.navigate(['/launch'], this.questionnaire.id);
-  }
-
-  public toStatsComponent(){
-
+  onChange(){
+    this.parentElement.updateQuestionnaire(this.questionnaire);
   }
 }

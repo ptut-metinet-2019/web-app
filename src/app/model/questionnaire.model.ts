@@ -1,6 +1,6 @@
 export class Questionnaire
 {
-	  private id: string;
+	  private _id: string;
     private name: string;
     private timer: number;
     private autoplayTimeout: number;
@@ -9,7 +9,7 @@ export class Questionnaire
 
     constructor(id: string, name: string, timer: number, autoplayTimeout: number, created: Date, updated: Date)
     {
-    	this.id = id;
+    	this._id = id;
     	this.name = name;
     	this.timer = timer;
     	this.autoplayTimeout = autoplayTimeout;
@@ -19,7 +19,7 @@ export class Questionnaire
 
     public getId(): string
     {
-        return this.id;
+        return this._id;
     }
 
     public getName(): string

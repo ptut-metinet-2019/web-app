@@ -2,21 +2,21 @@
   <ng-container *ngIf="questionnaire != undefined">
     <div class="saveArea">
       <div class="element element1">
-    <span *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false"
-          class="questionnaireNameLabel">{{questionnaire.name}}</span>
+        <span *ngIf="questionnaire.nameModeEdit == undefined || questionnaire.nameModeEdit == false"
+              class="questionnaireNameLabel">{{questionnaire.name}}</span>
       </div>
       <div class="element element2">
-        <input *ngIf="questionnaire.name.isModeEdit == true" type="text" [(ngModel)]="questionnaire.name">
+        <input *ngIf="questionnaire.nameModeEdit == true" type="text" [(ngModel)]="questionnaire.name">
       </div>
       <div class="element element3">
-        <div *ngIf="questionnaire.name.isModeEdit == undefined || questionnaire.name.isModeEdit == false"
+        <div *ngIf="questionnaire.nameModeEdit == undefined || questionnaire.nameModeEdit == false"
              class="img editButton">
-          <img class="classLogo" (click)="questionnaire.name.isModeEdit = true" src="assets/img/edit.svg">
+          <img class="classLogo" (click)="questionnaire.nameModeEdit = true" src="assets/img/edit.svg">
         </div>
       </div>
       <div class="element element4">
-        <div *ngIf="questionnaire.name.isModeEdit == true" class="img saveButton">
-          <img class="classLogo" (click)="questionnaire.name.isModeEdit = false"
+        <div *ngIf="questionnaire.nameModeEdit == true" class="img saveButton">
+          <img class="classLogo" (click)="questionnaire.nameModeEdit = false; onChange()"
                src="assets/img/save.svg">
         </div>
       </div>
@@ -28,34 +28,34 @@
     </div>
     <div class="element element6">
       <div class="img launchButton">
-        <img class="classLogo" [routerLink]="['/launch', questionnaire.id]" src="assets/img/launch.svg">
+        <img class="classLogo" [routerLink]="['/launch', questionnaire.getId()]" src="assets/img/launch.svg">
       </div>
     </div>
     <div class="element element7">
       <div class="img statsButton">
-        <img class="classLogo" [routerLink]="['/stats', questionnaire.id]" src="assets/img/stats.svg">
+        <img class="classLogo" [routerLink]="['/stats', questionnaire.getId()]" src="assets/img/stats.svg">
       </div>
     </div>
     <div class="element element8">
-      <p class="timerLabel">Timer :</p>
+      <p class="timerLabel">Timer : </p>
     </div>
     <div class="element element9">
-    <span *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false"
+    <span *ngIf="questionnaire.timerModeEdit == undefined || questionnaire.timerModeEdit == false"
           class="questionnaireTimerLabel">{{questionnaire.timer}}</span>
     </div>
     <div class="element element10">
-      <input *ngIf="questionnaire.timer.isModeEdit == true" type="number" [(ngModel)]="questionnaire.timer.value">
+      <input *ngIf="questionnaire.timerModeEdit == true" type="number" [(ngModel)]="questionnaire.timer">
       <p class="secondTimer">s</p>
     </div>
     <div class="element element11">
-      <div *ngIf="questionnaire.timer.isModeEdit == undefined || questionnaire.timer.isModeEdit == false"
+      <div *ngIf="questionnaire.timerModeEdit == undefined || questionnaire.timerModeEdit == false"
            class="img editButton">
-        <img class="classLogo editTime" (click)="questionnaire.timer.isModeEdit = true" src="assets/img/edit.svg">
+        <img class="classLogo editTime" (click)="questionnaire.timerModeEdit = true" src="assets/img/edit.svg">
       </div>
     </div>
     <div class="element element12">
-      <div *ngIf="questionnaire.timer.isModeEdit == true" class="img deleteButton">
-        <img class="saveLogo" (click)="questionnaire.timer.isModeEdit = false" src="assets/img/save.svg">
+      <div *ngIf="questionnaire.timerModeEdit == true" class="img deleteButton">
+        <img class="saveLogo" (click)="questionnaire.timerModeEdit = false; onChange()" src="assets/img/save.svg">
       </div>
     </div>
   </ng-container>

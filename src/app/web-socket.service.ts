@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 import {
   QuestionnaireCreatedEvent,
   QuestionnaireDeletedEvent,
-  QuestionnaireEventListener
+  QuestionnaireEventListener, QuestionnaireUpdatedEvent
 } from "./connection/event/questionnaire.model";
 
 @Injectable({
@@ -44,7 +44,7 @@ export class WebSocket {
     this.connection.send(request);
   }
 
-  public initQuestionnaireListEvent(createdCallback, deletedCallback){
+  public initQuestionnaireListEvent(createdCallback, deletedCallback, updatedCallback){
     this.connection.addListener(new QuestionnaireEventListener(function onCreated(event: QuestionnaireCreatedEvent)
     {
       // Questionnaire créé : event.getQuestionnaire()
@@ -53,6 +53,10 @@ export class WebSocket {
     {
       // Questionnaire supprimé : event.getQuestionnaireId()
       deletedCallback(event.getQuestionnaireId());
+    }.bind(this), function onUpdated(event: QuestionnaireUpdatedEvent)
+    {
+      // Questionnaire mis à jour : event.getQuestionnaire()
+      updatedCallback(event.getQuestionnaire());
     }.bind(this)));
   }
 
@@ -66,4 +70,24 @@ export class WebSocket {
     this.connection.send(request);
   }
 
+  public loadQuestionnaire(questionnaireId, callback){
+    // TODO
+    let request = this.connection.createRequest('questionnaire', 'get', {_id: questionnaireId});
+    request.onResponse(function (response: Response)
+    {
+      return callback(response.getData().questionnaires);
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+  public updateQuestionnaire(questionnaire, callback){
+    // TODO
+    let request = this.connection.createRequest('questionnaire', 'update', questionnaire);
+    request.onResponse(function (response: Response)
+    {
+      console.info("update response = ", response);
+      return callback(response.getData());
+    }.bind(this));
+    this.connection.send(request);
+  }
 }

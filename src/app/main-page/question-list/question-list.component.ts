@@ -41,6 +41,9 @@ export class QuestionListComponent implements OnInit{
         isModeEdit: false
       }
     };
+    if(this.questionnaire.questions === undefined){
+      this.questionnaire.questions = [];
+    }
     this.questionnaire.questions.push(newQuestion);
     this.selectedQuestion = newQuestion;
   }
