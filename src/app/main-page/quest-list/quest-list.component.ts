@@ -48,7 +48,6 @@ export class QuestListComponent implements OnInit{
   }
 
   public onLoadQuestionnaire(questionnaireId, questionnaireQuestions){
-    console.info("onLoadQuestionnaire", questionnaireQuestions);
     for(let questionnaire of this.questionnairesList){
       if(questionnaire.getId() == questionnaireId){
         questionnaire.setQuestions(questionnaireQuestions.questions);

@@ -55,11 +55,14 @@ export class QuestionComponent implements OnInit{
 
   public addProposition(){
     //TODO Ajout d'une proposition
-    console.info("Add new questions");
     this.question.propositions.push({
       label: "Nouvelle proposition",
       isModeEdit: true
     });
+  }
+
+  public updateQuestion(){
+    this.parentElement.updateQuestion(this.question);
   }
 
   public deleteProposition(propositionToRemove: any){

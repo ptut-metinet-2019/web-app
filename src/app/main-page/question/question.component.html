@@ -14,7 +14,7 @@
           <img
             src="assets/img/edit.svg">
         </div>
-        <div class="img saveButton" *ngIf="question.titleModeEdit == true" (click)="question.titleModeEdit = false">
+        <div class="img saveButton" *ngIf="question.titleModeEdit == true" (click)="question.titleModeEdit = false; updateQuestion()">
           <img
             src="assets/img/save.svg">
         </div>
@@ -35,7 +35,7 @@
           <img
             src="assets/img/edit.svg">
         </div>
-        <div class="img saveButton" *ngIf="question.timerModeEdit == true" (click)="question.timerModeEdit = false">
+        <div class="img saveButton" *ngIf="question.timerModeEdit == true" (click)="question.timerModeEdit = false; updateQuestion()">
           <img
             src="assets/img/save.svg">
         </div>
@@ -51,11 +51,11 @@
             <p *ngIf="choice.isModeEdit != true" class="propositionLabel">{{choice.label}}</p>
             <textarea *ngIf="choice.isModeEdit == true" type="text" maxlength="120" [(ngModel)]="choice.title"></textarea>
           </div>
-          <div class="img goodProposition" *ngIf="choice.goodChoice == true" (click)="choice.goodProposition = false">
+          <div class="img goodProposition" *ngIf="choice.goodChoice == true" (click)="choice.goodProposition = false; updateQuestion()">
             <img
               src="assets/img/verified.svg">
           </div>
-          <div class="img badProposition" *ngIf="choice.goodChoice != true" (click)="choice.goodProposition = true">
+          <div class="img badProposition" *ngIf="choice.goodChoice != true" (click)="choice.goodProposition = true; updateQuestion()">
             <img
               src="assets/img/verified.svg">
           </div>
@@ -64,7 +64,7 @@
               <img
                 src="assets/img/edit.svg">
             </div>
-            <div class="img saveButton" *ngIf="choice.isModeEdit == true" (click)="choice.isModeEdit = false">
+            <div class="img saveButton" *ngIf="choice.isModeEdit == true" (click)="choice.isModeEdit = false; updateQuestion()">
               <img
                 src="assets/img/save.svg">
             </div>

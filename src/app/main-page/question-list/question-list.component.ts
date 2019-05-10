@@ -61,8 +61,8 @@ export class QuestionListComponent implements OnInit{
     this.webSocket.deleteQuestionn(question._id);
   }
 
-  public updateQuestion(){
-    //TODO !
+  public updateQuestion(question){
+    this.webSocket.updateQuestion(question, this.updatedQuestionCallback.bind(this));
   }
 
 
@@ -86,7 +86,6 @@ export class QuestionListComponent implements OnInit{
         if(this.selectedQuestion == question){
           this.selectedQuestion = undefined;
         }
-        console.info("deleted question", question);
         this.questionnaire.questions.splice(this.questionnaire.questions.indexOf(question),1);
         return null;
       }
