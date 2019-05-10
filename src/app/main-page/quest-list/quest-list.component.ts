@@ -42,7 +42,6 @@ export class QuestListComponent implements OnInit{
     if(this.selectedQuestionnaire != questionnaire){
       this.clearQuestion();
       this.selectedQuestionnaire = questionnaire;
-      //TODO : Load QCM via BD à partir du param questionnaire
       this.webSocket.loadQuestionnaireQuestions(this.selectedQuestionnaire._id, this.onLoadQuestionnaire.bind(this));
     }
   }

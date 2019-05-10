@@ -26,27 +26,6 @@ export class QuestionListComponent implements OnInit{
   }
 
   public addQuestion(){
-    //TODO Ajout d'une questions
-    let question = {
-      name: {
-        value: "Nouvelle questions",
-        isModeEdit: false
-      },
-      propositions: [
-        {
-          label: "Réponse 1",
-          isModeEdit: false
-        },
-        {
-          label: "Réponse 2",
-          isModeEdit: false
-        }
-      ],
-      timer: {
-        value: "60",
-        isModeEdit: false
-      }
-    };
     let newQuestion = new Question(null, this.questionnaire._id,"Nouvelle question", "choice",10, false, new Date(), new Date(), [new Choice(null, "Réponse 1", false), new Choice(null, "Réponse 1", true)]);
     this.webSocket.addQuestion(newQuestion);
   }
@@ -71,7 +50,6 @@ export class QuestionListComponent implements OnInit{
    *******************************/
 
   public initQuestionListEvents(){
-    console.info("initQuestionListEvents");
     this.webSocket.initQuestionListEvent(this.addingQuestionCallback.bind(this), this.deletedQuestionCallback.bind(this), this.updatedQuestionCallback.bind(this));
   }
 

@@ -130,7 +130,6 @@ export class WebSocket {
     let request = this.connection.createRequest('question', 'update', question);
     request.onResponse(function (response: Response)
     {
-      console.info("update question response = ", response);
       return callback(response.getData());
     }.bind(this));
     this.connection.send(request);

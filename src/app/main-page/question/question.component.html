@@ -7,14 +7,14 @@
     <div class="flexEditQuestionTitle">
       <div class="inputQuestionTitle">
         <p *ngIf="question.titleModeEdit != true" class="questionLabel">{{question.title}}</p>
-        <textarea *ngIf="question.titleModeEdit == true" type="text" maxlength="120" [(ngModel)]="question.title"></textarea>
+        <textarea *ngIf="question.titleModeEdit == true" type="text" minlength="3" maxlength="120" [(ngModel)]="question.title"></textarea>
       </div>
       <div class="nameButtons">
         <div class="img editButton" *ngIf="question.titleModeEdit != true" (click)="question.titleModeEdit = true">
           <img
             src="assets/img/edit.svg">
         </div>
-        <div class="img saveButton" *ngIf="question.titleModeEdit == true" (click)="question.titleModeEdit = false; updateQuestion()">
+        <div class="img saveButton" *ngIf="question.titleModeEdit == true && question.title.length > 2" (click)="question.titleModeEdit = false; updateQuestion()">
           <img
             src="assets/img/save.svg">
         </div>
@@ -42,14 +42,21 @@
       </div>
     </div>
     <p class="reponseTitleLabel">
+      Type de question :
+      <select (change)="onChangeType($event)">
+        <option>Question à choix multiple</option>
+        <option>Question à réponse libre</option>
+      </select>
+    </p>
+    <p class="reponseTitleLabel" *ngIf="question.type == 'choice'">
       REPONSES :
     </p>
-    <div class="reponsesList">
+    <div class="reponsesList" *ngIf="question.type == 'choice'">
       <ng-container *ngFor="let choice of question.choices">
         <div class="flexEditReponse">
           <div class="propositionDiv">
-            <p *ngIf="choice.isModeEdit != true" class="propositionLabel">{{choice.label}}</p>
-            <textarea *ngIf="choice.isModeEdit == true" type="text" maxlength="120" [(ngModel)]="choice.title"></textarea>
+            <p *ngIf="choice.isModeEdit != true" class="propositionLabel">{{choice.title}}</p>
+            <textarea *ngIf="choice.isModeEdit == true" type="text" minlength="3" maxlength="120" [(ngModel)]="choice.title"></textarea>
           </div>
           <div class="img goodProposition" *ngIf="choice.goodChoice == true" (click)="choice.goodProposition = false; updateQuestion()">
             <img
@@ -64,7 +71,7 @@
               <img
                 src="assets/img/edit.svg">
             </div>
-            <div class="img saveButton" *ngIf="choice.isModeEdit == true" (click)="choice.isModeEdit = false; updateQuestion()">
+            <div class="img saveButton" *ngIf="choice.isModeEdit == true && choice.title.length > 2" (click)="choice.isModeEdit = false; updateQuestion()">
               <img
                 src="assets/img/save.svg">
             </div>
