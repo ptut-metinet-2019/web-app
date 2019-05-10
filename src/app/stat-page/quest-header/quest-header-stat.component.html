@@ -1,19 +1,9 @@
 <div id="mainQuestHeader">
   <ng-container *ngIf="questionnaire != undefined">
-    <div style="float: left;">
+    <div>
       <span class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
     </div>
-
-    <div *ngIf="selectedLancement != undefined">
-      <span class="questionnaireNameLabel"> Lancement du {{selectedLancement.date}}</span>
-    </div>
-
-    <div style="float: left;">
-      <button [routerLink]="['/launch', questionnaire.id]">Lancer</button>
-    </div>
+    <img class="boutonHeader" [routerLink]="['/launch', questionnaire.id]" alt="[IMG_LANCER]"/>
   </ng-container>
-
-  <div style="float: left;">
-    <button [routerLink]="['/dashboard']" >Retour à l'édition</button>
-  </div>
+  <img class="boutonHeader" [routerLink]="['/dashboard']" alt="[IMG_Retour_A_L_EDITION]"/>
 </div>

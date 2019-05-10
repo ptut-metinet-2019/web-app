@@ -1,8 +1,8 @@
 <div id="mainQuestion">
-  <span class="propositionLabel">{{question.name.value}}</span>
+  <span class="questionLabel">{{question.name.value}}</span>
 
   <ng-container *ngFor="let proposition of question.propositions">
-    <div class="propositionLabel">{{proposition.label}}</div>
+    <div class="propositionLabel">Réponse : {{proposition.label}}</div>
   </ng-container>
 
   <div>

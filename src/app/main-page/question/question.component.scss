@@ -94,15 +94,6 @@ img {
   border-radius: 100%;
 }
 
-#z_button:hover {
-  height: 50px;
-  width: 50px;
-  animation-name: turnButton;
-  cursor: pointer;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-}
-
 @keyframes turnButton {
 
   100% {
