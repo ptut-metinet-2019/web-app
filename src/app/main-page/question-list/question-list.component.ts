@@ -1,5 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {QuestionComponent} from "../question/question.component";
+import {WebSocket} from "../../web-socket.service";
+import {Questionnaire} from "../../model/questionnaire.model";
+import {Question} from "../../model/question.model";
+import {Choice} from "../../model/choice.model";
 
 @Component({
   selector: 'question-list',
@@ -11,8 +15,10 @@ export class QuestionListComponent implements OnInit{
   @ViewChild("question") questionComponent: QuestionComponent;
   selectedQuestion;
 
+  constructor(private webSocket: WebSocket){}
+
   ngOnInit(){
-    // this.initQuestionList();
+    this.initQuestionListEvents();
   }
 
   public selectQuestion(question: any){
@@ -21,7 +27,7 @@ export class QuestionListComponent implements OnInit{
 
   public addQuestion(){
     //TODO Ajout d'une questions
-    let newQuestion = {
+    let question = {
       name: {
         value: "Nouvelle questions",
         isModeEdit: false
@@ -41,11 +47,8 @@ export class QuestionListComponent implements OnInit{
         isModeEdit: false
       }
     };
-    if(this.questionnaire.questions === undefined){
-      this.questionnaire.questions = [];
-    }
-    this.questionnaire.questions.push(newQuestion);
-    this.selectedQuestion = newQuestion;
+    let newQuestion = new Question(null, this.questionnaire._id,"Nouvelle question", "choice",10, false, new Date(), new Date(), [new Choice(null, "Réponse 1", false), new Choice(null, "Réponse 1", true)]);
+    this.webSocket.addQuestion(newQuestion);
   }
 
   public clearQuestionComponent(){
@@ -55,88 +58,46 @@ export class QuestionListComponent implements OnInit{
   }
 
   public deleteQuestion(question: any){
-    if(this.selectedQuestion == question){
-      this.selectedQuestion = undefined;
-    }
-    this.questionnaire.questions.splice(this.questionnaire.questions.indexOf(question),1);
+    this.webSocket.deleteQuestionn(question._id);
   }
 
-  public initQuestionList(){
-    //DON'T USE THIS
-    this.questionnaire = [
-      {
-        name: {
-          value: "Ceci est la questions 1",
-          isModeEdit: false
-        },
-        propositions: [
-          {
-            label: "Ceci est la réponse 1",
-            isModeEdit: false
-          },
-          {
-            label: "Ceci est la réponse 2",
-            isModeEdit: false
-          },
-          {
-            label: "Ceci est la réponse 3",
-            isModeEdit: false
-          }
-        ],
-        timer: {
-          value: "60",
-          isModeEdit: false
+  public updateQuestion(){
+    //TODO !
+  }
+
+
+  /********************************
+   * **********  QUESTIONS ********
+   *******************************/
+
+  public initQuestionListEvents(){
+    console.info("initQuestionListEvents");
+    this.webSocket.initQuestionListEvent(this.addingQuestionCallback.bind(this), this.deletedQuestionCallback.bind(this), this.updatedQuestionCallback.bind(this));
+  }
+
+  public addingQuestionCallback(question: any){
+    this.questionnaire.questions.push(Question.fromJSONObject(question));
+    this.selectedQuestion = question;
+  }
+
+  public deletedQuestionCallback(questionId: any){
+    for(let question of this.questionnaire.questions){
+      if(question.getId() == questionId){
+        if(this.selectedQuestion == question){
+          this.selectedQuestion = undefined;
         }
-      },
-      {
-        name: {
-          value: "Ceci est la questions 2",
-          isModeEdit: false
-        },
-        propositions: [
-          {
-            label: "Ceci est la réponse 1",
-            isModeEdit: false
-          },
-          {
-            label: "Ceci est la réponse 2",
-            isModeEdit: false
-          },
-          {
-            label: "Ceci est la réponse 3",
-            isModeEdit: false
-          }
-        ],
-        timer: {
-          value: "600",
-          isModeEdit: false
-        }
-      },
-      {
-        name: {
-          value: "Ceci est la questions 3",
-          isModeEdit: false
-        },
-        propositions: [
-          {
-            label: "Tres bien",
-            isModeEdit: false
-          },
-          {
-            label: "Moyen",
-            isModeEdit: false
-          },
-          {
-            label: "Pas bon",
-            isModeEdit: false
-          }
-        ],
-        timer: {
-          value: "10",
-          isModeEdit: false
-        }
+        console.info("deleted question", question);
+        this.questionnaire.questions.splice(this.questionnaire.questions.indexOf(question),1);
+        return null;
       }
-    ];
+    }
   }
 
+  public updatedQuestionCallback(quest: any){
+    for(let question of this.questionnaire.questions){
+      if(question.getId() == quest._id){
+        Object.assign(question, Question.fromJSONObject(quest));
+      }
+    }
+  }
 }

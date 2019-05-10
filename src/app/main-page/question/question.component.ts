@@ -49,10 +49,8 @@ export class QuestionComponent implements OnInit{
     }
   }
 
-  public deleteQuestion(){
-    //TODO Suppression d'une questions
-    console.info("Removing questions", this);
-    this.parentElement.deleteQuestion(this.question);
+  public deleteQuestion(question){
+    this.parentElement.deleteQuestion(question);
   }
 
   public addProposition(){

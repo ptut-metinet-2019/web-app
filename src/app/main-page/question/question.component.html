@@ -6,36 +6,36 @@
     *ngIf="question != undefined && _parent.questionnaire != undefined && _parent.selectedQuestion == question">
     <div class="flexEditQuestionTitle">
       <div class="inputQuestionTitle">
-        <p *ngIf="question.name.isModeEdit == false" class="questionLabel">{{question.name.value}}</p>
-        <textarea *ngIf="question.name.isModeEdit == true" type="text" maxlength="120" [(ngModel)]="question.name.value"></textarea>
+        <p *ngIf="question.titleModeEdit != true" class="questionLabel">{{question.title}}</p>
+        <textarea *ngIf="question.titleModeEdit == true" type="text" maxlength="120" [(ngModel)]="question.title"></textarea>
       </div>
       <div class="nameButtons">
-        <div class="img editButton" *ngIf="question.name.isModeEdit == false" (click)="question.name.isModeEdit = true">
+        <div class="img editButton" *ngIf="question.titleModeEdit != true" (click)="question.titleModeEdit = true">
           <img
             src="assets/img/edit.svg">
         </div>
-        <div class="img saveButton" *ngIf="question.name.isModeEdit == true" (click)="question.name.isModeEdit = false">
+        <div class="img saveButton" *ngIf="question.titleModeEdit == true" (click)="question.titleModeEdit = false">
           <img
             src="assets/img/save.svg">
         </div>
         <div class="img deleteButton">
-          <img (click)="deleteQuestion()" src="assets/img/delete.svg">
+          <img (click)="deleteQuestion(question)" src="assets/img/delete.svg">
         </div>
       </div>
     </div>
     <div class="flexEditTimer">
       <div class="timerLabel">
         <p class="timerLabelLeft">Timer :</p>
-        <p class="timerLabelRight" *ngIf="question.timer.isModeEdit == false">{{question.timer.value}}</p>
-        <input class="inputTimer" *ngIf="question.timer.isModeEdit == true" type="number" [(ngModel)]="question.timer.value">
+        <p class="timerLabelRight" *ngIf="question.timerModeEdit != true">{{question.timer}}</p>
+        <input class="inputTimer" *ngIf="question.timerModeEdit == true" type="number" [(ngModel)]="question.timer">
         <p>s</p>
       </div>
       <div class="timerButtons">
-        <div class="img editButton" *ngIf="question.timer.isModeEdit == false" (click)="question.timer.isModeEdit = true">
+        <div class="img editButton" *ngIf="question.timerModeEdit != true" (click)="question.timerModeEdit = true">
           <img
             src="assets/img/edit.svg">
         </div>
-        <div class="img saveButton" *ngIf="question.timer.isModeEdit == true" (click)="question.timer.isModeEdit = false">
+        <div class="img saveButton" *ngIf="question.timerModeEdit == true" (click)="question.timerModeEdit = false">
           <img
             src="assets/img/save.svg">
         </div>
@@ -45,32 +45,32 @@
       REPONSES :
     </p>
     <div class="reponsesList">
-      <ng-container *ngFor="let proposition of question.propositions">
+      <ng-container *ngFor="let choice of question.choices">
         <div class="flexEditReponse">
           <div class="propositionDiv">
-            <p *ngIf="proposition.isModeEdit == false" class="propositionLabel">{{proposition.label}}</p>
-            <textarea *ngIf="proposition.isModeEdit == true" type="text" maxlength="120" [(ngModel)]="proposition.label"></textarea>
+            <p *ngIf="choice.isModeEdit != true" class="propositionLabel">{{choice.label}}</p>
+            <textarea *ngIf="choice.isModeEdit == true" type="text" maxlength="120" [(ngModel)]="choice.title"></textarea>
           </div>
-          <div class="img goodProposition" *ngIf="proposition.goodProposition == true" (click)="proposition.goodProposition = false">
+          <div class="img goodProposition" *ngIf="choice.goodChoice == true" (click)="choice.goodProposition = false">
             <img
               src="assets/img/verified.svg">
           </div>
-          <div class="img badProposition" *ngIf="proposition.goodProposition != true" (click)="proposition.goodProposition = true">
+          <div class="img badProposition" *ngIf="choice.goodChoice != true" (click)="choice.goodProposition = true">
             <img
-              src="assets/img/cancel.svg">
+              src="assets/img/verified.svg">
           </div>
           <div class="propositionButtons">
-            <div class="img editButton" *ngIf="proposition.isModeEdit == false" (click)="proposition.isModeEdit = true">
+            <div class="img editButton" *ngIf="choice.isModeEdit != true" (click)="choice.isModeEdit = true">
               <img
                 src="assets/img/edit.svg">
             </div>
-            <div class="img saveButton" *ngIf="proposition.isModeEdit == true" (click)="proposition.isModeEdit = false">
+            <div class="img saveButton" *ngIf="choice.isModeEdit == true" (click)="choice.isModeEdit = false">
               <img
                 src="assets/img/save.svg">
             </div>
           </div>
           <div class="img deleteButton">
-            <img (click)="deleteProposition(proposition)" src="assets/img/delete.svg">
+            <img (click)="deleteProposition(choice)" src="assets/img/delete.svg">
           </div>
         </div>
       </ng-container>

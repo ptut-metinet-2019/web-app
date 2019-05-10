@@ -10,6 +10,12 @@ import {
   QuestionnaireDeletedEvent,
   QuestionnaireEventListener, QuestionnaireUpdatedEvent
 } from "./connection/event/questionnaire.model";
+import {
+  QuestionCreatedEvent,
+  QuestionDeletedEvent,
+  QuestionEventListener,
+  QuestionUpdatedEvent
+} from "./connection/event/question.model";
 
 @Injectable({
   providedIn: 'root'
@@ -70,22 +76,61 @@ export class WebSocket {
     this.connection.send(request);
   }
 
-  public loadQuestionnaire(questionnaireId, callback){
-    // TODO
-    let request = this.connection.createRequest('questionnaire', 'get', {_id: questionnaireId});
-    request.onResponse(function (response: Response)
-    {
-      return callback(response.getData().questionnaires);
-    }.bind(this));
-    this.connection.send(request);
-  }
-
   public updateQuestionnaire(questionnaire, callback){
-    // TODO
     let request = this.connection.createRequest('questionnaire', 'update', questionnaire);
     request.onResponse(function (response: Response)
     {
       console.info("update response = ", response);
+      return callback(response.getData());
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+
+  /********************************
+   * **********  QUESTIONS ********
+   *******************************/
+
+  public initQuestionListEvent(createdCallback, deletedCallback, updatedCallback){
+    this.connection.addListener(new QuestionEventListener(function onCreated(event: QuestionCreatedEvent)
+    {
+      // Question créé : event.getQuestion()
+      createdCallback(event.getQuestion());
+    }.bind(this), function onDeleted(event: QuestionDeletedEvent)
+    {
+      // Question supprimé : event.getQuestionId()
+      deletedCallback(event.getQuestionId());
+    }.bind(this), function onUpdated(event: QuestionUpdatedEvent)
+    {
+      // Question mis à jour : event.getQuestion()
+      updatedCallback(event.getQuestion());
+    }.bind(this)));
+  }
+
+  public loadQuestionnaireQuestions(questionnaireId, callback){
+    let request = this.connection.createRequest('question', 'get', {questionnaireId: questionnaireId});
+    request.onResponse(function (response: Response)
+    {
+      return callback(questionnaireId, response.getData());
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+  public addQuestion(question: {}){
+    let request = this.connection.createRequest('question', 'create', question);
+    this.connection.send(request);
+  }
+
+  public deleteQuestionn(questionId: any){
+    let request = this.connection.createRequest('question', 'delete', {_id: questionId});
+    this.connection.send(request);
+  }
+
+  public updateQuestion(question, callback){
+    let request = this.connection.createRequest('question', 'update', question);
+    request.onResponse(function (response: Response)
+    {
+      console.info("update question response = ", response);
       return callback(response.getData());
     }.bind(this));
     this.connection.send(request);
