@@ -10,7 +10,7 @@ import {Choice} from "../../model/choice.model";
   templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.scss']
 })
-export class QuestionListComponent implements OnInit{
+export class QuestionListComponent implements OnInit {
   @Input("questionnaire") questionnaire: any;
   @ViewChild("question") questionComponent: QuestionComponent;
   selectedQuestion;
@@ -21,7 +21,7 @@ export class QuestionListComponent implements OnInit{
     this.initQuestionListEvents();
   }
 
-  public selectQuestion(question: any){
+  public selectQuestion(question: any) {
     this.selectedQuestion = question;
   }
 
@@ -30,8 +30,8 @@ export class QuestionListComponent implements OnInit{
     this.webSocket.addQuestion(newQuestion);
   }
 
-  public clearQuestionComponent(){
-    if(this.questionComponent != undefined){
+  public clearQuestionComponent() {
+    if (this.questionComponent != undefined) {
       this.questionComponent.clear();
     }
   }

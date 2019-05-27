@@ -15,7 +15,7 @@
                  class="input registerPassword" required>
           <div class="border passwordBorder"></div>
         </div>
-        <button class="submitButton" type="submit" [disabled]="!loginForm.valid">Submit</button>
+        <button id="stopCancer" class="submitButton" type="submit" [disabled]="!loginForm.valid">Submit</button>
         <div class="error invalidCredentialsError" *ngIf="invalidCredentialsError">Email ou mot de passe invalide</div>
       </form>
     </div>
