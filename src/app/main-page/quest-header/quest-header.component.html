@@ -54,8 +54,31 @@
       </div>
     </div>
     <div class="element element12">
-     <div *ngIf="questionnaire.timerModeEdit == true" class="img saveButton">
+      <div *ngIf="questionnaire.timerModeEdit == true" class="img saveButton">
         <img class="saveLogo" (click)="questionnaire.timerModeEdit = false; onChange()" src="assets/img/save.svg">
+      </div>
+    </div>
+
+    <div class="element element8">
+      <p class="timerLabel">Delai question suivante : </p>
+    </div>
+    <div class="element element9">
+    <span *ngIf="questionnaire.delayModeEdit == undefined || questionnaire.delayModeEdit == false"
+          class="questionnaireTimerLabel">{{questionnaire.autoplayTimeout}}</span>
+    </div>
+    <div class="element element10">
+      <input class="inputTimerHead" *ngIf="questionnaire.delayModeEdit == true" type="number" [(ngModel)]="questionnaire.autoplayTimeout">
+      <p class="secondTimer">s</p>
+    </div>
+    <div class="element element11">
+      <div *ngIf="questionnaire.delayModeEdit == undefined || questionnaire.delayModeEdit == false"
+           class="img editButton">
+        <img class="classLogo editTime" (click)="questionnaire.delayModeEdit = true" src="assets/img/edit.svg">
+      </div>
+    </div>
+    <div class="element element12">
+      <div *ngIf="questionnaire.delayModeEdit == true" class="img saveButton">
+        <img class="saveLogo" (click)="questionnaire.delayModeEdit = false; onChange()" src="assets/img/save.svg">
       </div>
     </div>
   </ng-container>
