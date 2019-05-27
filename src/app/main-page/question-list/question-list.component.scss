@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 #mainQuestion{
   box-sizing: border-box;
@@ -21,15 +22,21 @@
 }
 
 .question-list {
-  height: 80%;
-  div:nth-child(even) {
-    background-color: #fff;
-  }
+  height: 95%;
+
   overflow-y: scroll;
   scrollbar-width: thin;
   margin: 0;
-  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 40px;
   width: 100%;
+}
+.switchDisplay{
+  height: auto;
+  width: 100%;
+  div:nth-child(even) {
+    background-color: #fff;
+  }
 }
 .fixPaddingPB{
   padding: 8px;
@@ -51,8 +58,8 @@
 
 .QuestionListTitle {
   width: auto;
-  height: auto;
-  margin-top: 15px;
+  height: 5%;
+  padding-top: 15px;
 }
 
 #z_plus {
@@ -82,4 +89,11 @@
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  background-color: #c0c0c0;
 }

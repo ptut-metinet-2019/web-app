@@ -6,20 +6,20 @@ import {QuestionComponent} from "../question/question.component";
   templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.scss']
 })
-export class QuestionListComponent implements OnInit{
+export class QuestionListComponent implements OnInit {
   @Input("questionnaire") questionnaire: any;
   @ViewChild("question") questionComponent: QuestionComponent;
   selectedQuestion;
 
-  ngOnInit(){
+  ngOnInit() {
     // this.initQuestionList();
   }
 
-  public selectQuestion(question: any){
+  public selectQuestion(question: any) {
     this.selectedQuestion = question;
   }
 
-  public addQuestion(){
+  public addQuestion() {
     //TODO Ajout d'une questions
     let newQuestion = {
       name: {
@@ -41,27 +41,27 @@ export class QuestionListComponent implements OnInit{
         isModeEdit: false
       }
     };
-    if(this.questionnaire.questions === undefined){
+    if (this.questionnaire.questions === undefined) {
       this.questionnaire.questions = [];
     }
     this.questionnaire.questions.push(newQuestion);
     this.selectedQuestion = newQuestion;
   }
 
-  public clearQuestionComponent(){
-    if(this.questionComponent != undefined){
+  public clearQuestionComponent() {
+    if (this.questionComponent != undefined) {
       this.questionComponent.clear();
     }
   }
 
-  public deleteQuestion(question: any){
-    if(this.selectedQuestion == question){
+  public deleteQuestion(question: any) {
+    if (this.selectedQuestion == question) {
       this.selectedQuestion = undefined;
     }
-    this.questionnaire.questions.splice(this.questionnaire.questions.indexOf(question),1);
+    this.questionnaire.questions.splice(this.questionnaire.questions.indexOf(question), 1);
   }
 
-  public initQuestionList(){
+  public initQuestionList() {
     //DON'T USE THIS
     this.questionnaire = [
       {
