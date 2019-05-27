@@ -8,7 +8,7 @@
         <ng-container *ngFor="let question of questionnaire.questions">
           <div class="questionDiv" (click)="selectQuestion(question)">
             <div class="fixPaddingPB">
-              <p class="questionnaireLabel">{{question.name.value}}</p>
+              <p class="questionnaireLabel">{{question.title}}</p>
             </div>
           </div>
         </ng-container>

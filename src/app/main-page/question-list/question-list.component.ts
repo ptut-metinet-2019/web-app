@@ -1,5 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {QuestionComponent} from "../question/question.component";
+import {WebSocket} from "../../web-socket.service";
+import {Questionnaire} from "../../model/questionnaire.model";
+import {Question} from "../../model/question.model";
+import {Choice} from "../../model/choice.model";
 
 @Component({
   selector: 'question-list',
@@ -11,41 +15,19 @@ export class QuestionListComponent implements OnInit {
   @ViewChild("question") questionComponent: QuestionComponent;
   selectedQuestion;
 
-  ngOnInit() {
-    // this.initQuestionList();
+  constructor(private webSocket: WebSocket){}
+
+  ngOnInit(){
+    this.initQuestionListEvents();
   }
 
   public selectQuestion(question: any) {
     this.selectedQuestion = question;
   }
 
-  public addQuestion() {
-    //TODO Ajout d'une questions
-    let newQuestion = {
-      name: {
-        value: "Nouvelle questions",
-        isModeEdit: false
-      },
-      propositions: [
-        {
-          label: "Réponse 1",
-          isModeEdit: false
-        },
-        {
-          label: "Réponse 2",
-          isModeEdit: false
-        }
-      ],
-      timer: {
-        value: "60",
-        isModeEdit: false
-      }
-    };
-    if (this.questionnaire.questions === undefined) {
-      this.questionnaire.questions = [];
-    }
-    this.questionnaire.questions.push(newQuestion);
-    this.selectedQuestion = newQuestion;
+  public addQuestion(){
+    let newQuestion = new Question(null, this.questionnaire._id,"Nouvelle question", "choice",10, false, new Date(), new Date(), [new Choice(null, "Réponse 1", false), new Choice(null, "Réponse 1", true)]);
+    this.webSocket.addQuestion(newQuestion);
   }
 
   public clearQuestionComponent() {
@@ -54,89 +36,45 @@ export class QuestionListComponent implements OnInit {
     }
   }
 
-  public deleteQuestion(question: any) {
-    if (this.selectedQuestion == question) {
-      this.selectedQuestion = undefined;
-    }
-    this.questionnaire.questions.splice(this.questionnaire.questions.indexOf(question), 1);
+  public deleteQuestion(question: any){
+    this.webSocket.deleteQuestionn(question._id);
   }
 
-  public initQuestionList() {
-    //DON'T USE THIS
-    this.questionnaire = [
-      {
-        name: {
-          value: "Ceci est la questions 1",
-          isModeEdit: false
-        },
-        propositions: [
-          {
-            label: "Ceci est la réponse 1",
-            isModeEdit: false
-          },
-          {
-            label: "Ceci est la réponse 2",
-            isModeEdit: false
-          },
-          {
-            label: "Ceci est la réponse 3",
-            isModeEdit: false
-          }
-        ],
-        timer: {
-          value: "60",
-          isModeEdit: false
+  public updateQuestion(question){
+    this.webSocket.updateQuestion(question, this.updatedQuestionCallback.bind(this));
+  }
+
+
+  /********************************
+   * **********  QUESTIONS ********
+   *******************************/
+
+  public initQuestionListEvents(){
+    this.webSocket.initQuestionListEvent(this.addingQuestionCallback.bind(this), this.deletedQuestionCallback.bind(this), this.updatedQuestionCallback.bind(this));
+  }
+
+  public addingQuestionCallback(question: any){
+    this.questionnaire.questions.push(Question.fromJSONObject(question));
+    this.selectedQuestion = question;
+  }
+
+  public deletedQuestionCallback(questionId: any){
+    for(let question of this.questionnaire.questions){
+      if(question.getId() == questionId){
+        if(this.selectedQuestion == question){
+          this.selectedQuestion = undefined;
         }
-      },
-      {
-        name: {
-          value: "Ceci est la questions 2",
-          isModeEdit: false
-        },
-        propositions: [
-          {
-            label: "Ceci est la réponse 1",
-            isModeEdit: false
-          },
-          {
-            label: "Ceci est la réponse 2",
-            isModeEdit: false
-          },
-          {
-            label: "Ceci est la réponse 3",
-            isModeEdit: false
-          }
-        ],
-        timer: {
-          value: "600",
-          isModeEdit: false
-        }
-      },
-      {
-        name: {
-          value: "Ceci est la questions 3",
-          isModeEdit: false
-        },
-        propositions: [
-          {
-            label: "Tres bien",
-            isModeEdit: false
-          },
-          {
-            label: "Moyen",
-            isModeEdit: false
-          },
-          {
-            label: "Pas bon",
-            isModeEdit: false
-          }
-        ],
-        timer: {
-          value: "10",
-          isModeEdit: false
-        }
+        this.questionnaire.questions.splice(this.questionnaire.questions.indexOf(question),1);
+        return null;
       }
-    ];
+    }
   }
 
+  public updatedQuestionCallback(quest: any){
+    for(let question of this.questionnaire.questions){
+      if(question.getId() == quest._id){
+        Object.assign(question, Question.fromJSONObject(quest));
+      }
+    }
+  }
 }

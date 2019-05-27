@@ -42,13 +42,16 @@ export class QuestListComponent implements OnInit{
     if(this.selectedQuestionnaire != questionnaire){
       this.clearQuestion();
       this.selectedQuestionnaire = questionnaire;
-      //TODO : Load QCM via BD à partir du param questionnaire
-      this.webSocket.loadQuestionnaire(this.selectedQuestionnaire.id, this.onLoadQuestionnaire.bind(this));
+      this.webSocket.loadQuestionnaireQuestions(this.selectedQuestionnaire._id, this.onLoadQuestionnaire.bind(this));
     }
   }
 
-  public onLoadQuestionnaire(questionnaire){
-    console.info("onLoadQuestionnaire", questionnaire);
+  public onLoadQuestionnaire(questionnaireId, questionnaireQuestions){
+    for(let questionnaire of this.questionnairesList){
+      if(questionnaire.getId() == questionnaireId){
+        questionnaire.setQuestions(questionnaireQuestions.questions);
+      }
+    }
   }
 
   public addNewQuestionnaire() {
@@ -76,6 +79,7 @@ export class QuestListComponent implements OnInit{
     this.initQuestionnaireListEvents();
     if(this.questionnairesList.length > 0){
       this.selectedQuestionnaire = this.questionnairesList[0];
+      this.webSocket.loadQuestionnaireQuestions(this.selectedQuestionnaire._id, this.onLoadQuestionnaire.bind(this));
     }
   }
 
@@ -111,5 +115,6 @@ export class QuestListComponent implements OnInit{
       }
     }
   }
+
 
 }

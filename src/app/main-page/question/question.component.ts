@@ -15,53 +15,37 @@ export class QuestionComponent implements OnInit{
   }
 
   ngOnInit(){
-    // this.initQuestion();
+
+  }
+
+  public onChangeType(event){
+    if(event.target.value == "Question à réponse libre"){
+      this.question.type = "free";
+      this.updateQuestion();
+    }else if(event.target.value == "Question à choix multiple"){
+      this.question.type = "choice";
+      this.updateQuestion();
+    }
   }
 
   public clear(){
     this.question = {};
   }
 
-  public initQuestion(){
-    this.question = {
-      name: {
-        value: "Ceci est la questions 1",
-        isModeEdit: false
-      },
-      propositions: [
-        {
-          label: "Ceci est la réponse 1",
-          isModeEdit: false
-        },
-        {
-          label: "Ceci est la réponse 2",
-          isModeEdit: false
-        },
-        {
-          label: "Ceci est la réponse 3",
-          isModeEdit: false
-        }
-      ],
-      timer: {
-        value: "60",
-        isModeEdit: false
-      }
-    }
-  }
-
-  public deleteQuestion(){
-    //TODO Suppression d'une questions
-    console.info("Removing questions", this);
-    this.parentElement.deleteQuestion(this.question);
+  public deleteQuestion(question){
+    this.parentElement.deleteQuestion(question);
   }
 
   public addProposition(){
     //TODO Ajout d'une proposition
-    console.info("Add new questions");
     this.question.propositions.push({
       label: "Nouvelle proposition",
       isModeEdit: true
     });
+  }
+
+  public updateQuestion(){
+    this.parentElement.updateQuestion(this.question);
   }
 
   public deleteProposition(propositionToRemove: any){

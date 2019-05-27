@@ -1,3 +1,5 @@
+import {Question} from "./question.model";
+
 export class Questionnaire
 {
 	  private _id: string;
@@ -6,6 +8,7 @@ export class Questionnaire
     private autoplayTimeout: number;
     private created: Date;
     private updated: Date;
+    private questions: Array<Question>;
 
     constructor(id: string, name: string, timer: number, autoplayTimeout: number, created: Date, updated: Date)
     {
@@ -44,10 +47,24 @@ export class Questionnaire
 
     public getUpdated(): Date
     {
-        return this.updated;
+      return this.updated;
     }
 
-    public static fromJSONObject(data: any): Questionnaire
+    public setQuestions(questions: Array<Question>): void
+    {
+      this.questions = new Array<Question>();
+      for(let question of questions){
+        this.questions.push(Question.fromJSONObject(question));
+      }
+    }
+
+    public getQuestions(): Array<Question>
+    {
+      return this.questions;
+    }
+
+
+  public static fromJSONObject(data: any): Questionnaire
     {
         return new Questionnaire(
             data._id,
