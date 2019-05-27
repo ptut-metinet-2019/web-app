@@ -58,11 +58,11 @@
             <p *ngIf="choice.isModeEdit != true" class="propositionLabel">{{choice.title}}</p>
             <textarea *ngIf="choice.isModeEdit == true" type="text" minlength="3" maxlength="120" [(ngModel)]="choice.title"></textarea>
           </div>
-          <div class="img goodProposition" *ngIf="choice.goodChoice == true" (click)="choice.goodProposition = false; updateQuestion()">
+          <div class="img goodProposition" *ngIf="choice.answer == true" (click)="choice.answer = false; updateProposition(choice)">
             <img
               src="assets/img/verified.svg">
           </div>
-          <div class="img badProposition" *ngIf="choice.goodChoice != true" (click)="choice.goodProposition = true; updateQuestion()">
+          <div class="img badProposition" *ngIf="choice.answer != true" (click)="choice.answer = true; updateProposition(choice)">
             <img
               src="assets/img/verified.svg">
           </div>
@@ -71,7 +71,7 @@
               <img
                 src="assets/img/edit.svg">
             </div>
-            <div class="img saveButton" *ngIf="choice.isModeEdit == true && choice.title.length > 2" (click)="choice.isModeEdit = false; updateQuestion()">
+            <div class="img saveButton" *ngIf="choice.isModeEdit == true && choice.title.length > 2" (click)="choice.isModeEdit = false; updateProposition(choice)">
               <img
                 src="assets/img/save.svg">
             </div>

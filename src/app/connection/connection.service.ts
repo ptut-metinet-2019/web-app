@@ -11,6 +11,8 @@ import {
 } from './event/questionnaire.model';
 import {QuestionCreatedEvent, QuestionDeletedEvent, QuestionUpdatedEvent} from "./event/question.model";
 import {Question} from "../model/question.model";
+import {Choice} from "../model/choice.model";
+import {ChoiceCreatedEvent, ChoiceDeletedEvent, ChoiceUpdatedEvent} from "./event/choice.model";
 
 export class Connection
 {
@@ -85,6 +87,15 @@ export class Connection
                     event = new QuestionDeletedEvent(data.data._id);
                   else if (data.action === 'update')
                     event = new QuestionUpdatedEvent(Question.fromJSONObject(data.data));
+                }
+                else  if(data.target === "choice")
+                {
+                  if(data.action === "create")
+                    event = new ChoiceCreatedEvent(Choice.fromJSONObject(data.data));
+                  else if (data.action === 'delete')
+                    event = new ChoiceDeletedEvent(data.data._id);
+                  else if (data.action === 'update')
+                    event = new ChoiceUpdatedEvent(Choice.fromJSONObject(data.data));
                 }
 
                 if(event !== null)

@@ -26,7 +26,7 @@ export class QuestionListComponent implements OnInit{
   }
 
   public addQuestion(){
-    let newQuestion = new Question(null, this.questionnaire._id,"Nouvelle question", "choice",10, false, new Date(), new Date(), [new Choice(null, "Réponse 1", false), new Choice(null, "Réponse 1", true)]);
+    let newQuestion = new Question(null, this.questionnaire._id,"Nouvelle question", "choice",10, false, new Date(), new Date(), [new Choice(null, null, "Réponse 1", false), new Choice(null, null, "Réponse 1", true)]);
     this.webSocket.addQuestion(newQuestion);
   }
 

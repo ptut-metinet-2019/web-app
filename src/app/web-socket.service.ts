@@ -16,6 +16,12 @@ import {
   QuestionEventListener,
   QuestionUpdatedEvent
 } from "./connection/event/question.model";
+import {
+  ChoiceCreatedEvent,
+  ChoiceDeletedEvent,
+  ChoiceEventListener,
+  ChoiceUpdatedEvent
+} from "./connection/event/choice.model";
 
 @Injectable({
   providedIn: 'root'
@@ -134,4 +140,44 @@ export class WebSocket {
     }.bind(this));
     this.connection.send(request);
   }
+
+
+  /********************************
+   * **********  CHOICES **********
+   *******************************/
+  public initChoiceListEvent(createdCallback, deletedCallback, updatedCallback){
+    this.connection.addListener(new ChoiceEventListener(function onCreated(event: ChoiceCreatedEvent)
+    {
+      // Choice créé : event.getQuestion()
+      createdCallback(event.getChoice());
+    }.bind(this), function onDeleted(event: ChoiceDeletedEvent)
+    {
+      // Choice supprimé : event.getQuestionId()
+      deletedCallback(event.getChoiceId());
+    }.bind(this), function onUpdated(event: ChoiceUpdatedEvent)
+    {
+      // Choice mis à jour : event.getQuestion()
+      updatedCallback(event.getChoice());
+    }.bind(this)));
+  }
+
+  public addChoice(choice: {}){
+    let request = this.connection.createRequest('choice', 'create', choice);
+    this.connection.send(request);
+  }
+
+  public updateChoice(choice, callback){
+    let request = this.connection.createRequest('choice', 'update', choice);
+    request.onResponse(function (response: Response)
+    {
+      return callback(response.getData());
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+  public removeChoice(choiceId: any){
+    let request = this.connection.createRequest('choice', 'delete', {_id: choiceId});
+    this.connection.send(request);
+  }
+
 }

@@ -1,5 +1,8 @@
 import {Component, forwardRef, Inject, Input, OnInit} from '@angular/core';
 import {QuestionListComponent} from "../question-list/question-list.component";
+import {Choice} from "../../model/choice.model";
+import {WebSocket} from "../../web-socket.service";
+import {Question} from "../../model/question.model";
 
 @Component({
   selector: 'question',
@@ -10,12 +13,12 @@ export class QuestionComponent implements OnInit{
   @Input("question") question: any;
   parentElement: QuestionListComponent;
 
-  constructor(@Inject(forwardRef(() => QuestionListComponent)) private _parent:QuestionListComponent) {
+  constructor(@Inject(forwardRef(() => QuestionListComponent)) private _parent:QuestionListComponent, private webSocket: WebSocket) {
     this.parentElement = _parent;
   }
 
   ngOnInit(){
-
+    this.initChoicenListEvents();
   }
 
   public onChangeType(event){
@@ -32,25 +35,67 @@ export class QuestionComponent implements OnInit{
     this.question = {};
   }
 
-  public deleteQuestion(question){
-    this.parentElement.deleteQuestion(question);
-  }
-
-  public addProposition(){
-    //TODO Ajout d'une proposition
-    this.question.propositions.push({
-      label: "Nouvelle proposition",
-      isModeEdit: true
-    });
-  }
-
   public updateQuestion(){
     this.parentElement.updateQuestion(this.question);
   }
 
+  public deleteQuestion(question){
+    this.parentElement.deleteQuestion(question);
+  }
+
+
+
+  public addProposition(){
+    let newChoice = new Choice(null, this.question._id, "Nouvelle proposition", false);
+    this.webSocket.addChoice(newChoice);
+  }
+
+  public updateProposition(choice: any){
+    this.webSocket.updateChoice(choice, this.updatedPropositionCallback.bind(this));
+  }
+
   public deleteProposition(propositionToRemove: any){
-    //TODO Remove proposition from List
-    console.info("Proposition to remove : ", propositionToRemove);
-    this.question.propositions.splice(this.question.propositions.indexOf(propositionToRemove),1);
+    this.webSocket.removeChoice(propositionToRemove._id);
+  }
+
+  public updatedPropositionCallback(updatedChoice: any){
+    for(let choice of this.question.choices){
+      if(choice.getId() == updatedChoice._id){
+        Object.assign(choice, Question.fromJSONObject(updatedChoice));
+      }
+    }
+  }
+
+
+  /********************************
+   * **********  CHOICE ** ********
+   *******************************/
+  public initChoicenListEvents(){
+    this.webSocket.initChoiceListEvent(this.addingChoiceCallback.bind(this), this.deletedChoiceCallback.bind(this), this.updatedChoiceCallback.bind(this));
+  }
+
+  public addingChoiceCallback(choice: any){
+    if(this.question.choices == undefined){
+      this.question.choices = [];
+    }
+    console.info("addingChoiceCallback() ", choice);
+    this.question.choices.push(Choice.fromJSONObject(choice));
+  }
+
+  public deletedChoiceCallback(choiceId: any){
+    for(let choice of this.question.choices){
+      if(choice.getId() == choiceId){
+        this.question.choices.splice(this.question.choices.indexOf(choice),1);
+        return null;
+      }
+    }
+  }
+
+  public updatedChoiceCallback(choiceUpdated: any){
+    for(let choice of this.question.choices){
+      if(choice.getId() == choiceUpdated._id){
+        Object.assign(choice, Choice.fromJSONObject(choiceUpdated));
+      }
+    }
   }
 }

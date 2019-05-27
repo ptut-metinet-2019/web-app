@@ -1,13 +1,15 @@
 export class Choice{
   private _id;
+  private questionId: string;
   private title: string;
-  private goodChoice: boolean;
+  private answer: boolean;
 
 
-  constructor(id, title: string, goodChoice: boolean) {
+  constructor(id, questionId: string, title: string, answer: boolean) {
     this._id = id;
+    this.questionId = questionId;
     this.title = title;
-    this.goodChoice = goodChoice;
+    this.answer = answer;
   }
 
   getId() {
@@ -18,7 +20,21 @@ export class Choice{
     return this.title;
   }
 
-  getGoodChoice(): boolean{
-    return this.goodChoice;
+  getAnswer(): boolean{
+    return this.answer;
+  }
+
+  getQuestionId(): string {
+    return this.questionId;
+  }
+
+  public static fromJSONObject(data: any): Choice
+  {
+    return new Choice(
+      data._id,
+      data.questionId,
+      data.title,
+      data.answer,
+    );
   }
 }
