@@ -73,7 +73,9 @@ export class QuestionListComponent implements OnInit {
   public updatedQuestionCallback(quest: any){
     for(let question of this.questionnaire.questions){
       if(question.getId() == quest._id){
+        let tmpChoice = question.getChoices();
         Object.assign(question, Question.fromJSONObject(quest));
+        question.setChoices(tmpChoice);
       }
     }
   }

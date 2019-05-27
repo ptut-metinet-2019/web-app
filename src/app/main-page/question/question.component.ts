@@ -78,13 +78,12 @@ export class QuestionComponent implements OnInit{
     if(this.question.choices == undefined){
       this.question.choices = [];
     }
-    console.info("addingChoiceCallback() ", choice);
     this.question.choices.push(Choice.fromJSONObject(choice));
   }
 
   public deletedChoiceCallback(choiceId: any){
     for(let choice of this.question.choices){
-      if(choice.getId() == choiceId){
+      if(choice._id == choiceId){
         this.question.choices.splice(this.question.choices.indexOf(choice),1);
         return null;
       }
