@@ -4,8 +4,8 @@
     <p class="form-title">QUESTIONNAIRES</p>
   </div>
   <ng-container *ngFor="let questionnaire of questionnairesList">
-    <div class="questionnaireLabelDiv" (click)="loadQuestionnaire(questionnaire)">
-      <span class="questionnaireLabel">{{questionnaire.name.value}}</span>
+    <div class="questionnaireLabelDiv" (click)="loadQuestionnaireLancement(questionnaire)">
+      <span class="questionnaireLabel">{{questionnaire.name}}</span>
     </div>
   </ng-container>
 </div>

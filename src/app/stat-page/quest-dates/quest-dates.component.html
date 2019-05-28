@@ -7,7 +7,7 @@
       <ng-container *ngFor="let lancement of questionnaire.lancements">
         <div class="singleQuestion">
           <div class="hoverQuestion" (click)="selectLancement(lancement)">
-            <span class="questionnaireLabel">{{lancement.date}}</span>
+            <span class="questionnaireLabel">{{lancement.created | date:'medium'}}</span>
           </div>
         </div>
       </ng-container>

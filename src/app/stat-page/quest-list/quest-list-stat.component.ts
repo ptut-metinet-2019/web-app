@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {QuestDatesComponent} from "../quest-dates/quest-dates.component";
 import {QuestHeaderStatComponent} from "../quest-header/quest-header-stat.component";
+import {WebSocket} from "../../web-socket.service";
+import {Questionnaire} from "../../model/questionnaire.model";
 
 @Component({
   selector: 'quest-list-stat',
@@ -13,8 +15,12 @@ export class QuestListStatComponent implements OnInit{
   questionnairesList: any[];
   selectedQuestionnaire: any;
 
+  constructor(private webSocket: WebSocket){
+
+  }
+
   ngOnInit(){
-    this.initQuestionnaireList();
+    this.initQuestionnaireListFromBD();
   }
 
   public clearQuestion(){
@@ -23,11 +29,38 @@ export class QuestListStatComponent implements OnInit{
   }
 
 
-  public loadQuestionnaire(questionnaire: any){
-    //TODO : Load QCM via BD à partir du param questionnaire
+  public loadQuestionnaireLancement(questionnaire: any){
     if(this.selectedQuestionnaire != questionnaire){
       this.clearQuestion();
       this.selectedQuestionnaire = questionnaire;
+      this.statHeader.questionnaire = this.selectedQuestionnaire;
+      this.questionDatesList.questionnaire = this.selectedQuestionnaire;
+    }
+    this.webSocket.getAllLancements(this.selectedQuestionnaire._id, this.onLoadLancements.bind(this));
+  }
+
+  public initQuestionnaireListFromBD(){
+    this.questionnairesList = [];
+    this.webSocket.getAllQuestionnaires(this.fillDatas.bind(this));
+  }
+
+  public fillDatas(datas?: any){
+    for(let data of datas){
+      this.questionnairesList.push(Questionnaire.fromJSONObject(data));
+    }
+    if(this.questionnairesList.length > 0){
+      this.selectedQuestionnaire = this.questionnairesList[0];
+      this.statHeader.questionnaire = this.selectedQuestionnaire;
+      this.questionDatesList.questionnaire = this.selectedQuestionnaire;
+      this.webSocket.getAllLancements(this.selectedQuestionnaire._id, this.onLoadLancements.bind(this));
+    }
+  }
+
+  public onLoadLancements(questionnaireId, questionnaireLancements){
+    for(let questionnaire of this.questionnairesList){
+      if(questionnaire.getId() == questionnaireId){
+        questionnaire.lancements = questionnaireLancements;
+      }
     }
   }
 

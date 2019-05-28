@@ -1,6 +1,7 @@
 import {Component, forwardRef, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {QuestionsStatComponent} from "../questions/questions-stat.component";
 import {QuestListStatComponent} from "../quest-list/quest-list-stat.component";
+import {WebSocket} from "../../web-socket.service";
 
 @Component({
   selector: 'quest-dates',
@@ -13,7 +14,7 @@ export class QuestDatesComponent implements OnInit{
   public selectedLancement: any;
 
 
-  constructor(@Inject(forwardRef(() => QuestListStatComponent)) private _parent: QuestListStatComponent) {
+  constructor(@Inject(forwardRef(() => QuestListStatComponent)) private _parent: QuestListStatComponent, private webSocket: WebSocket) {
 
   }
 
@@ -28,6 +29,7 @@ export class QuestDatesComponent implements OnInit{
     }catch (e) {
       console.error("ERROR UPDATING SELECTED LANCEMENT IN HEADER", e)
     }
+    this.webSocket.getStats(this.selectedLancement._id, this.getStatCallback.bind(this));
   }
 
   public clearQuestionComponent(){
@@ -36,4 +38,8 @@ export class QuestDatesComponent implements OnInit{
     }
   }
 
+  public getStatCallback(datas){
+    console.info("getStatCallback()", datas);
+    this.questionnaire.questions = datas.questionnaire.questions;
+  }
 }

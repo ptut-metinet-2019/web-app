@@ -277,4 +277,31 @@ export class WebSocket {
     }.bind(this));
     this.connection.send(request);
   }
+
+  /********************************
+   ************  STATS ************
+   *******************************/
+  public getAllLancements(questionnaireId, callback){
+    let request = this.connection.createRequest('session','all', {questionnaireId: questionnaireId});
+    request.onResponse(function (response: Response)
+    {
+      console.info("getAllLancements();", response);
+      return callback(questionnaireId, response.getData())
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+  /********************************
+   ************  STATS ************
+   *******************************/
+  public getStats(lancementId, callback){
+    let request = this.connection.createRequest('session','get', {_id: lancementId});
+    request.onResponse(function (response: Response)
+    {
+      console.info("getStats();", response);
+      return callback(response.getData())
+    }.bind(this));
+    this.connection.send(request);
+  }
+
 }
