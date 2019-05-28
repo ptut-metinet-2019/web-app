@@ -1,6 +1,6 @@
 <div id="mainQuestHeader">
   <div class="headContent">
-    <span class="questionnaireNameLabel">{{questionnaire.name.value}}</span>
+    <span class="questionnaireNameLabel">{{questionnaire.title}}</span>
 
     <img src="" alt="[IMG_PAUSE]" *ngIf="!isPaused && !isStoped" (click)="pause()">
     <img src="" alt="[IMG_RESUME]" *ngIf="isPaused" (click)="resume()">

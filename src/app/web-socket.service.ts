@@ -22,17 +22,29 @@ import {
   ChoiceEventListener,
   ChoiceUpdatedEvent
 } from "./connection/event/choice.model";
+import {
+  SessionEventListener,
+  SessionInitEvent,
+  SessionQuestionStart,
+  SessionQuestionStop, SessionStop
+} from "./connection/event/session.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocket {
   private connection = new Connection();
+  private sessionListener;
+  public sessionInitialized = false;
+  public session2Initialized = false;
 
   constructor(private router: Router){
 
   }
 
+  /********************************
+   * **********  LOGIN ************
+   *******************************/
   public initLoginConnexion(token: string){
     this.connection.addListener(new ConnectionEventListener(function onConnected(event: ConnectedEvent)
     {
@@ -47,6 +59,10 @@ export class WebSocket {
     this.connection.init(token);
   }
 
+
+  /********************************
+   * ******  QUESTIONNAIRES *******
+   *******************************/
   public getAllQuestionnaires(callback){
     let request = this.connection.createRequest('questionnaire', 'all');
     request.onResponse(function (response: Response)
@@ -181,4 +197,84 @@ export class WebSocket {
     this.connection.send(request);
   }
 
+  /********************************
+   ***********  LAUNCH ************
+   *******************************/
+  public initSessionEvent(initCallback, endSessionCallback){
+    if(this.sessionInitialized == true){
+      return;
+    }
+    this.sessionListener = new SessionEventListener(function onInit(event: SessionInitEvent)
+    {
+      initCallback(event.getQuestionnaire(), event.getPhoneNumber());
+    }.bind(this), function onSessionStop(event: SessionQuestionStop)
+    {
+      endSessionCallback();
+    }.bind(this));
+    this.connection.addListener(this.sessionListener);
+    this.sessionInitialized = true;
+  }
+
+  public initSessionEvent2(startQuestionCallback, endQuestionCallback, endSessionCallback){
+    if(this.session2Initialized == true){
+      return;
+    }
+    this.sessionListener.construct(function onQuestionStart(event: SessionQuestionStart)
+    {
+      startQuestionCallback();
+    }.bind(this), function onQuestionStop(event: SessionQuestionStop)
+    {
+      endQuestionCallback();
+    }.bind(this), function onSessionStop(event: SessionStop)
+    {
+      endSessionCallback();
+    }.bind(this));
+    this.session2Initialized = true;
+  }
+
+  public initLaunch(questionnaireId){
+    let request = this.connection.createRequest('session','init', {questionnaireId: questionnaireId});
+    console.info(questionnaireId);
+    request.onResponse(function (response: Response)
+    {
+      console.info("initLaunch();", response);
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+  public startLaunch(){
+    let request = this.connection.createRequest('session','start');
+    request.onResponse(function (response: Response)
+    {
+      console.info("startLaunch();", response);
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+  public skipLaunch(){
+    let request = this.connection.createRequest('session','skip');
+    request.onResponse(function (response: Response)
+    {
+      console.info("skipLaunch();", response);
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+  public stopLaunch(){
+    let request = this.connection.createRequest('session','stop');
+    request.onResponse(function (response: Response)
+    {
+      console.info("stopLaunch();", response);
+    }.bind(this));
+    this.connection.send(request);
+  }
+
+  public nextLaunch(){
+    let request = this.connection.createRequest('session','next');
+    request.onResponse(function (response: Response)
+    {
+      console.info("nextLaunch();", response);
+    }.bind(this));
+    this.connection.send(request);
+  }
 }

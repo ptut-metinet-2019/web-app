@@ -1,4 +1,4 @@
-export class Choice{
+export class Session{
   private _id;
   private questionId: string;
   private title: string;
@@ -12,7 +12,6 @@ export class Choice{
     this.answer = answer;
   }
 
-  pp
   getId() {
     return this._id;
   }
@@ -29,9 +28,9 @@ export class Choice{
     return this.questionId;
   }
 
-  public static fromJSONObject(data: any): Choice
+  public static fromJSONObject(data: any): Session
   {
-    return new Choice(
+    return new Session(
       data._id,
       data.questionId,
       data.title,

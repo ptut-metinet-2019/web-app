@@ -46,7 +46,7 @@ export class QuestionComponent implements OnInit{
 
 
   public addProposition(){
-    let newChoice = new Choice(null, this.question._id, "Nouvelle proposition", false);
+    let newChoice = new Choice(null, this.question._id, "Nouveau choix", false);
     this.webSocket.addChoice(newChoice);
   }
 

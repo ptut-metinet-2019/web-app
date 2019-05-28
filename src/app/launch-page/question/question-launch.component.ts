@@ -1,5 +1,7 @@
 import {Component, forwardRef, Inject, Input, OnInit} from '@angular/core';
 import {QuestionListLaunchComponent} from "../question-list/question-list-launch.component";
+import {GlobalComponent} from "../../global.component";
+import {WebSocket} from "../../web-socket.service";
 
 @Component({
   selector: 'question-launch',
@@ -14,23 +16,37 @@ export class QuestionLaunchComponent implements OnInit{
   public isPaused = false;
   public isStoped = false;
   public timer: any;
+  public phoneNumber: string;
 
-  constructor(@Inject(forwardRef(() => QuestionListLaunchComponent)) private _parent:QuestionListLaunchComponent) {
+  constructor(@Inject(forwardRef(() => QuestionListLaunchComponent)) private _parent:QuestionListLaunchComponent, private globalComponent: GlobalComponent, private webSocket: WebSocket) {
     this.parentElement = _parent;
+    this.phoneNumber = this.globalComponent.phoneNumber;
   }
 
   ngOnInit(){
-    this.loadTimer();
+    this.isStoped = false;
+    this.isPaused = false;
+    this.initSessionEvents();
+    this.startQuestion();
+  }
+
+  public initSessionEvents(){
+    this.webSocket.initSessionEvent2(this.startQuestionCallback.bind(this), this.endQuestionCallback.bind(this), this.stopCallback.bind(this));
+  }
+
+  public startQuestion(){
+    this.webSocket.startLaunch();
   }
 
   public loadTimer(){
-    if(this.question.timer.value != undefined && this.question.timer.value != 0){
-      this.cpt = this.question.timer.value;
-      this.timerValue = parseInt(this.question.timer.value);
+    if(this.question.timer != undefined && this.question.timer != 0){
+      this.cpt = this.question.timer;
+      this.timerValue = parseInt(this.question.timer);
     }else{
-      this.cpt = this.parentElement.questionnaire.timer.value;
-      this.timerValue = parseInt(this.parentElement.questionnaire.timer.value);
+      this.cpt = this.parentElement.questionnaire.timer;
+      this.timerValue = parseInt(this.parentElement.questionnaire.timer);
     }
+    console.info("timer value = '" + this.timerValue + "'");
     let cptMax = parseInt(this.cpt)+1;
     //for(let i = 1; i < cptMax; i++){
       this.timer = setInterval(function(){
@@ -52,15 +68,28 @@ export class QuestionLaunchComponent implements OnInit{
   }
 
   public stop(){
-    this.isPaused = true;
-    this.isStoped = true;
-    clearInterval(this.timer);
-    this.timerValue = "Questionnaire arreté";
+    this.webSocket.stopLaunch();
   }
 
   public goNextQuestion(){
     clearInterval(this.timer);
     this.parentElement.goNextQuestion();
+    this.webSocket.nextLaunch();
+  }
+
+  public startQuestionCallback(param){
+    console.info("startQuestionCallback()", param, this.question);
     this.loadTimer();
+  }
+
+  public endQuestionCallback(){
+    console.info("endQuestionCallback()");
+  }
+
+  public stopCallback(){
+    this.isPaused = true;
+    this.isStoped = true;
+    clearInterval(this.timer);
+    this.timerValue = "Questionnaire terminé";
   }
 }

@@ -1,4 +1,5 @@
 <div id="mainQuestHeader">
+  <button (click)="stopLaunch()">STOP</button>
   <ng-container *ngIf="questionnaire != undefined">
     <div class="saveArea">
       <div class="element element1">
@@ -28,7 +29,7 @@
     </div>
     <div class="element element6">
       <div class="img launchButton">
-        <img class="classLogo" [routerLink]="['/launch', questionnaire.getId()]" src="assets/img/launch.svg">
+        <img class="classLogo" (click)="goToLaunchPage()" src="assets/img/launch.svg">
       </div>
     </div>
     <div class="element element7">

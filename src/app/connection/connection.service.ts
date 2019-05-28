@@ -13,6 +13,7 @@ import {QuestionCreatedEvent, QuestionDeletedEvent, QuestionUpdatedEvent} from "
 import {Question} from "../model/question.model";
 import {Choice} from "../model/choice.model";
 import {ChoiceCreatedEvent, ChoiceDeletedEvent, ChoiceUpdatedEvent} from "./event/choice.model";
+import {SessionInitEvent, SessionQuestionStart, SessionQuestionStop, SessionStop} from "./event/session.model";
 
 export class Connection
 {
@@ -96,6 +97,17 @@ export class Connection
                     event = new ChoiceDeletedEvent(data.data._id);
                   else if (data.action === 'update')
                     event = new ChoiceUpdatedEvent(Choice.fromJSONObject(data.data));
+                }
+                else  if(data.target === "session")
+                {
+                  if(data.action === "init")
+                    event = new SessionInitEvent(data.data.questionnaire, data.data.phoneNumber);
+                  else if (data.action === 'question-start')
+                    event = new SessionQuestionStart();
+                  else if (data.action === 'question-end')
+                    event = new SessionQuestionStop();
+                  else if (data.action === 'stop')
+                    event = new SessionStop();
                 }
 
                 if(event !== null)

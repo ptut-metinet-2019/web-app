@@ -25,6 +25,7 @@ import { QuestionsStatComponent} from "./stat-page/questions/questions-stat.comp
 import { QuestDatesComponent} from "./stat-page/quest-dates/quest-dates.component";
 import { QuestListStatComponent} from "./stat-page/quest-list/quest-list-stat.component";
 import { QuestHeaderStatComponent} from "./stat-page/quest-header/quest-header-stat.component";
+import {GlobalComponent} from "./global.component";
 
 @NgModule({
   declarations: [

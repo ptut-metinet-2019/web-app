@@ -6,7 +6,7 @@
     <div class="mainQuestList">
       <ng-container *ngFor="let question of questionnaire.questions">
         <ng-container *ngIf="question.isLoaded != undefined && question.isLoaded == true">
-          <div class="questionnaireLabel"><p>{{question.name.value}}</p></div>
+          <div class="questionnaireLabel"><p>{{question.title}}</p></div>
         </ng-container>
       </ng-container>
     </div>

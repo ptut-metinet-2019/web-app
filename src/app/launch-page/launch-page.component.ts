@@ -1,6 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionListLaunchComponent} from "./question-list/question-list-launch.component";
+import {WebSocket} from "../web-socket.service";
+import {map} from "rxjs/operators";
+import {GlobalComponent} from "../global.component";
 
 @Component({
   selector: 'main-launch-page',
@@ -13,12 +16,14 @@ export class LaunchPageComponent implements OnInit{
   public questionnaire: any;
   public questLoaded = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router, private webSocket: WebSocket, private globalComponent: GlobalComponent) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.questId = +params['id']; // (+) converts string 'id' to a number
-      this.loadQuestionnaire();
+      this.questionnaire = this.globalComponent.tmpLaunchQuestionnaire;
+      console.info(this.questionnaire);
+      this.questLoaded = true;
+      //this.startLaunch();
     });
   }
 
@@ -34,76 +39,24 @@ export class LaunchPageComponent implements OnInit{
     this.questionListPanel.stop();
   }
 
-  private loadQuestionnaire(){
-    //TODO : LOAD LE QUESTIONNAIRE VIA DB
-    this.questionnaire = {
-      id: 1,
-      name: {
-        value: "Questionnaire 1"
-      },
-      timer:{
-        value: "10"
-      },
-      questions: [
-        {
-          name: {
-            value: "Ceci est la questions 1"
-          },
-          propositions: [
-            {
-              label: "Ceci est la réponse 1"
-            },
-            {
-              label: "Ceci est la réponse 2"
-            },
-            {
-              label: "Ceci est la réponse 3"
-            }
-          ],
-          timer: {
-            value: "15"
-          }
-        },
-        {
-          name: {
-            value: "Ceci est la questions 2"
-          },
-          propositions: [
-            {
-              label: "Ceci est la réponse 1"
-            },
-            {
-              label: "Ceci est la réponse 2"
-            },
-            {
-              label: "Ceci est la réponse 3"
-            }
-          ],
-          timer: {
-            value: "30"
-          }
-        },
-        {
-          name: {
-            value: "Ceci est la questions 3"
-          },
-          propositions: [
-            {
-              label: "Tres bien"
-            },
-            {
-              label: "Moyen"
-            },
-            {
-              label: "Pas bon"
-            }
-          ],
-          timer: {
-            value: "0"
-          }
-        }
-      ]
-    };
-    this.questLoaded = true;
+  private startLaunch(){
+    this.webSocket.startLaunch();
+  }
+
+  public stopLaunch(){
+    this.webSocket.stopLaunch();
+  }
+
+  public startLaunchCallback(quest: any){
+    console.info("startLaunchCallback()", quest);
+  }
+
+  public stopLaunchCallback(response: any){
+    console.info("stopLaunchCallback()", response);
+    if(response.status == 200 || response.status == 204){
+      this.router.navigate(['/dashboard']);
+    }else{
+      window.alert(response.data.error);
+    }
   }
 }
