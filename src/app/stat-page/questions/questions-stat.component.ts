@@ -24,6 +24,9 @@ export class QuestionsStatComponent implements OnInit{
 
   public getAnswerLabel(choices, choiceId){
     console.info("getAnswerLabel()", choiceId);
+    if(choiceId == undefined){
+      return "";
+    }
     for(let choice of choices){
       if(choice._id == choiceId){
         return choice.title;
