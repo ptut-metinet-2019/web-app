@@ -13,7 +13,13 @@ import {QuestionCreatedEvent, QuestionDeletedEvent, QuestionUpdatedEvent} from "
 import {Question} from "../model/question.model";
 import {Choice} from "../model/choice.model";
 import {ChoiceCreatedEvent, ChoiceDeletedEvent, ChoiceUpdatedEvent} from "./event/choice.model";
-import {SessionInitEvent, SessionQuestionStart, SessionQuestionStop, SessionStop} from "./event/session.model";
+import {
+  SessionAnswer,
+  SessionInitEvent,
+  SessionQuestionStart,
+  SessionQuestionStop,
+  SessionStop
+} from "./event/session.model";
 
 export class Connection
 {
@@ -108,6 +114,8 @@ export class Connection
                     event = new SessionQuestionStop();
                   else if (data.action === 'stop')
                     event = new SessionStop();
+                  else if (data.action === 'answer')
+                    event = new SessionAnswer(data.data.answer, data.data.choiceId);
                 }
 
                 if(event !== null)

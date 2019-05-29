@@ -2,7 +2,7 @@
   <ng-container *ngIf="lancement != undefined && _parent.selectedLancement == lancement">
     <div *ngFor="let question of lancement.questions" class="question">
       <div class="flexQuestionTitleAndPercentage">
-        <span class="questionTitle">{{question.name}}</span>
+        <span class="questionTitle">{{question.title}}</span>
         <div class="percentage twentyFivePercent">
 
         </div>
@@ -16,9 +16,15 @@
         </div>
         <div class="divInsidePercentage">75%</div>
       </div>
-      <div class="flexBoxSingleQuestion proposition" *ngFor="let proposition of question.propositions">
-        <div class="answerStatLabel">{{proposition.label}} - {{proposition.stat}}%</div>
-        <div class="barStat" [style.width.%]="proposition.stat*0.7"></div>
+      <div class="flexBoxSingleQuestion proposition" *ngFor="let choice of question.choices">
+        <div class="answerStatLabel">{{choice.title}} - {{choice.stat}}%</div>
+        <div class="barStat" [style.width.%]="choice.stat*0.7"></div>
+      </div>
+      <div class="answerDiv" *ngIf="question.type == 'free'">
+        <span>Réponses :</span><br>
+        <div *ngFor="let answer of question.answers">
+          {{getAnswerLabel(question.choices, answer.choiceId)}}
+        </div>
       </div>
     </div>
   </ng-container>

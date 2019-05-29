@@ -13,3 +13,9 @@
 
   <button *ngIf="timerValue == 0" (click)="goNextQuestion()">Question suivante</button>
 </div>
+
+<div id="answerReceivedDiv">
+  <div *ngFor="let answer of question.answers">
+    {{answer.answer}}
+  </div>
+</div>

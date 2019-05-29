@@ -23,6 +23,7 @@ import {
   ChoiceUpdatedEvent
 } from "./connection/event/choice.model";
 import {
+  SessionAnswer,
   SessionEventListener,
   SessionInitEvent,
   SessionQuestionStart,
@@ -215,7 +216,7 @@ export class WebSocket {
     this.sessionInitialized = true;
   }
 
-  public initSessionEvent2(startQuestionCallback, endQuestionCallback, endSessionCallback){
+  public initSessionEvent2(startQuestionCallback, endQuestionCallback, endSessionCallback, answerReceivedCallback){
     if(this.session2Initialized == true){
       return;
     }
@@ -228,6 +229,9 @@ export class WebSocket {
     }.bind(this), function onSessionStop(event: SessionStop)
     {
       endSessionCallback();
+    }.bind(this), function onAnswerReceived(event: SessionAnswer)
+    {
+      answerReceivedCallback();
     }.bind(this));
     this.session2Initialized = true;
   }
@@ -235,46 +239,26 @@ export class WebSocket {
   public initLaunch(questionnaireId){
     let request = this.connection.createRequest('session','init', {questionnaireId: questionnaireId});
     console.info(questionnaireId);
-    request.onResponse(function (response: Response)
-    {
-      console.info("initLaunch();", response);
-    }.bind(this));
     this.connection.send(request);
   }
 
   public startLaunch(){
     let request = this.connection.createRequest('session','start');
-    request.onResponse(function (response: Response)
-    {
-      console.info("startLaunch();", response);
-    }.bind(this));
     this.connection.send(request);
   }
 
   public skipLaunch(){
     let request = this.connection.createRequest('session','skip');
-    request.onResponse(function (response: Response)
-    {
-      console.info("skipLaunch();", response);
-    }.bind(this));
     this.connection.send(request);
   }
 
   public stopLaunch(){
     let request = this.connection.createRequest('session','stop');
-    request.onResponse(function (response: Response)
-    {
-      console.info("stopLaunch();", response);
-    }.bind(this));
     this.connection.send(request);
   }
 
   public nextLaunch(){
     let request = this.connection.createRequest('session','next');
-    request.onResponse(function (response: Response)
-    {
-      console.info("nextLaunch();", response);
-    }.bind(this));
     this.connection.send(request);
   }
 
@@ -285,20 +269,15 @@ export class WebSocket {
     let request = this.connection.createRequest('session','all', {questionnaireId: questionnaireId});
     request.onResponse(function (response: Response)
     {
-      console.info("getAllLancements();", response);
       return callback(questionnaireId, response.getData())
     }.bind(this));
     this.connection.send(request);
   }
 
-  /********************************
-   ************  STATS ************
-   *******************************/
   public getStats(lancementId, callback){
     let request = this.connection.createRequest('session','get', {_id: lancementId});
     request.onResponse(function (response: Response)
     {
-      console.info("getStats();", response);
       return callback(response.getData())
     }.bind(this));
     this.connection.send(request);

@@ -31,7 +31,7 @@ export class QuestionLaunchComponent implements OnInit{
   }
 
   public initSessionEvents(){
-    this.webSocket.initSessionEvent2(this.startQuestionCallback.bind(this), this.endQuestionCallback.bind(this), this.stopCallback.bind(this));
+    this.webSocket.initSessionEvent2(this.startQuestionCallback.bind(this), this.endQuestionCallback.bind(this), this.stopCallback.bind(this), this.answerReceivedCallback.bind(this));
   }
 
   public startQuestion(){
@@ -91,5 +91,13 @@ export class QuestionLaunchComponent implements OnInit{
     this.isStoped = true;
     clearInterval(this.timer);
     this.timerValue = "Questionnaire terminé";
+  }
+
+  public answerReceivedCallback(answer, choiceId){
+    console.info("answerReceivedCallback()",answer, choiceId);
+    if(this.question.answers == undefined){
+      this.question.answers = [];
+    }
+    this.question.answers.push({answer: answer, choiceId: choiceId});
   }
 }

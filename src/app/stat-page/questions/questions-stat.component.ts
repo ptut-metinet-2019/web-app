@@ -15,10 +15,19 @@ export class QuestionsStatComponent implements OnInit{
   }
 
   ngOnInit(){
-    // this.initQuestion();
+    // this.initQuestion();getAnswerLabel
   }
 
   public clear(){
     this.lancement = {};
+  }
+
+  public getAnswerLabel(choices, choiceId){
+    console.info("getAnswerLabel()", choiceId);
+    for(let choice of choices){
+      if(choice._id == choiceId){
+        return choice.title;
+      }
+    }
   }
 }

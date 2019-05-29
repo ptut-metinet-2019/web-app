@@ -38,12 +38,33 @@ export class SessionStop implements Event
 
 }
 
+export class SessionAnswer implements Event
+{
+  private answer;
+  private choiceId;
+
+  constructor(answer: any, choiceId: any)
+  {
+    this.answer = answer;
+    this.choiceId = choiceId;
+  }
+
+  public getAnswer(){
+    return this.answer;
+  }
+
+  public getChoiceId(){
+    return this.choiceId;
+  }
+}
+
 export class SessionEventListener implements EventListener
 {
   private onInit: ((event: SessionInitEvent) => void);
   private onQuestionStart: ((event: SessionQuestionStart) => void);
   private onQuestionStop: ((event: SessionQuestionStop) => void);
   private onSessionStop: ((event: SessionStop) => void);
+  private onAnswerReceived: ((event: SessionAnswer) => void);
 
   constructor(onInit: ((event: SessionInitEvent) => void), onSessionStop: ((event: SessionStop) => void))
   {
@@ -51,11 +72,12 @@ export class SessionEventListener implements EventListener
     this.onSessionStop = onSessionStop;
   }
 
-  public construct(onQuestionStart: ((event: SessionQuestionStart) => void), onQuestionStop: ((event: SessionQuestionStop) => void), onSessionStop: ((event: SessionStop) => void))
+  public construct(onQuestionStart: ((event: SessionQuestionStart) => void), onQuestionStop: ((event: SessionQuestionStop) => void), onSessionStop: ((event: SessionStop) => void), onAnswerReceived: ((event: SessionAnswer) => void))
   {
     this.onQuestionStart = onQuestionStart;
     this.onQuestionStop = onQuestionStop;
     this.onSessionStop = onSessionStop;
+    this.onAnswerReceived = onAnswerReceived;
   }
 
   public handle(event: Event): void
