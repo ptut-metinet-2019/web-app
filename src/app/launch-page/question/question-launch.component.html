@@ -11,14 +11,14 @@
     Temps restant : {{timerValue}}
   </div>
 
-  <button *ngIf="timerValue == 0" (click)="goNextQuestion()">Question suivante</button>
+  <button class="nextQuestion" *ngIf="timerValue == 0" (click)="goNextQuestion()">Question suivante</button>
 </div>
 
 <div id="answerReceivedDiv">
-  <div>
+  <div class="titleReponse">
     Réponses recus = {{nbAnswerReceived}}
   </div>
-  <div *ngFor="let answer of question.answers">
+  <div class="reponseSimple" *ngFor="let answer of question.answers">
     {{answer.answer}}
   </div>
 </div>

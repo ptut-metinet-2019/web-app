@@ -2,8 +2,10 @@
   <div class="headContent">
     <span class="questionnaireNameLabel">{{questionnaire.title}}</span>
 
-    <img src="" alt="[IMG_STOP]" *ngIf="!isStoped" (click)="stop()">
-    <img src="" alt="[IMG_DASHBOARD]" *ngIf="isStoped" [routerLink]="['/dashboard']">
+    <p *ngIf="!isStoped">Arreter le questionnaire</p><img class="imgStop" src="assets/img/cancel.svg" alt="[IMG_STOP]"
+                                                          *ngIf="!isStoped" (click)="stop()">
+    <p *ngIf="isStoped">Retour au dashboard</p><img src="assets/img/home.png" alt="[IMG_DASHBOARD]" *ngIf="isStoped"
+                                                    [routerLink]="['/dashboard']">
   </div>
 
 </div>
