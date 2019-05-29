@@ -23,7 +23,7 @@
       <div class="answerDiv" *ngIf="question.type == 'free'">
         <span>Réponses :</span><br>
         <div *ngFor="let answer of question.answers">
-          {{getAnswerLabel(question.choices, answer.choiceId)}}
+          {{answer.answer}}
         </div>
       </div>
     </div>

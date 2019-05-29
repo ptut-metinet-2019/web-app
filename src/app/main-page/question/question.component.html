@@ -44,8 +44,8 @@
     <p class="reponseTitleLabel">
       Type de question :
       <select class="selectMain" (change)="onChangeType($event)">
-        <option>Question à choix multiple</option>
-        <option>Question à réponse libre</option>
+        <option [selected]="question.type=='choice'">Question à choix multiple</option>
+        <option [selected]="question.type=='free'">Question à réponse libre</option>
       </select>
     </p>
     <p class="reponseTitleLabel" *ngIf="question.type == 'choice'">
