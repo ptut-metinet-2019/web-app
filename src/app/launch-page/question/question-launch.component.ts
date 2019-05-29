@@ -35,7 +35,11 @@ export class QuestionLaunchComponent implements OnInit{
   }
 
   public startQuestion(){
-    this.webSocket.startLaunch();
+    let that = this;
+    setTimeout(function()
+    {
+      that.webSocket.startLaunch();
+    }, 2000);
   }
 
   public loadTimer(){
