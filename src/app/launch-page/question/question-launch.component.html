@@ -15,6 +15,9 @@
 </div>
 
 <div id="answerReceivedDiv">
+  <div>
+    Réponses recus = {{nbAnswerReceived}}
+  </div>
   <div *ngFor="let answer of question.answers">
     {{answer.answer}}
   </div>

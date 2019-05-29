@@ -90,5 +90,7 @@ export class SessionEventListener implements EventListener
       this.onQuestionStop.call(this, event);
     if(event instanceof SessionStop && this.onSessionStop != undefined)
       this.onSessionStop.call(this, event);
+    if(event instanceof SessionAnswer && this.onAnswerReceived != undefined)
+      this.onAnswerReceived.call(this, event);
   }
 }

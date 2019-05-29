@@ -17,6 +17,7 @@ export class QuestionLaunchComponent implements OnInit{
   public isStoped = false;
   public timer: any;
   public phoneNumber: string;
+  public nbAnswerReceived: number = 0;
 
   constructor(@Inject(forwardRef(() => QuestionListLaunchComponent)) private _parent:QuestionListLaunchComponent, private globalComponent: GlobalComponent, private webSocket: WebSocket) {
     this.parentElement = _parent;
@@ -83,6 +84,7 @@ export class QuestionLaunchComponent implements OnInit{
 
   public startQuestionCallback(param){
     console.info("startQuestionCallback()", param, this.question);
+    this.nbAnswerReceived = 0;
     this.loadTimer();
   }
 
@@ -95,13 +97,30 @@ export class QuestionLaunchComponent implements OnInit{
     this.isStoped = true;
     clearInterval(this.timer);
     this.timerValue = "Questionnaire terminé";
+    this._parent.parentElement.questHeader.isStoped = true;
   }
 
   public answerReceivedCallback(answer, choiceId){
     console.info("answerReceivedCallback()",answer, choiceId);
+    this.nbAnswerReceived++;
     if(this.question.answers == undefined){
       this.question.answers = [];
     }
-    this.question.answers.push({answer: answer, choiceId: choiceId});
+    if(this.question.type == "free"){
+      this.question.answers.push({answer: answer, choiceId: choiceId});
+    }else{
+      let label = this.foundLabelOfChoice(choiceId);
+      this.question.answers.push({answer: label, choiceId: choiceId});
+    }
+  }
+
+  public foundLabelOfChoice(choiceId){
+    for(let choice of this.question.choices){
+      console.info(choice._id,"==", choiceId);
+      if(choice._id == choiceId){
+        return choice.title;
+      }
+    }
+    return "Réponse incorrect recue";
   }
 }

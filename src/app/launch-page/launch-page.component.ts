@@ -4,6 +4,7 @@ import {QuestionListLaunchComponent} from "./question-list/question-list-launch.
 import {WebSocket} from "../web-socket.service";
 import {map} from "rxjs/operators";
 import {GlobalComponent} from "../global.component";
+import {QuestHeaderLaunchComponent} from "./quest-header/quest-header-launch.component";
 
 @Component({
   selector: 'main-launch-page',
@@ -12,6 +13,7 @@ import {GlobalComponent} from "../global.component";
 })
 export class LaunchPageComponent implements OnInit{
   @ViewChild("questionListPanel") questionListPanel: QuestionListLaunchComponent;
+  @ViewChild("questHeader") questHeader: QuestHeaderLaunchComponent;
   private questId: number;
   public questionnaire: any;
   public questLoaded = false;

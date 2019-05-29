@@ -231,7 +231,7 @@ export class WebSocket {
       endSessionCallback();
     }.bind(this), function onAnswerReceived(event: SessionAnswer)
     {
-      answerReceivedCallback();
+      answerReceivedCallback(event.getAnswer(), event.getChoiceId());
     }.bind(this));
     this.session2Initialized = true;
   }

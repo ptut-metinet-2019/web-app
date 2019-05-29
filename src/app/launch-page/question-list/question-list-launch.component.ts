@@ -1,5 +1,8 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, forwardRef, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {QuestionLaunchComponent} from "../question/question-launch.component";
+import {GlobalComponent} from "../../global.component";
+import {WebSocket} from "../../web-socket.service";
+import {LaunchPageComponent} from "../launch-page.component";
 
 @Component({
   selector: 'question-list-launch',
@@ -9,7 +12,13 @@ import {QuestionLaunchComponent} from "../question/question-launch.component";
 export class QuestionListLaunchComponent implements OnInit{
   @Input("questionnaire") questionnaire: any;
   @ViewChild("question") questionLaunchComponent: QuestionLaunchComponent;
+  parentElement: LaunchPageComponent;
   public selectedQuestion: any;
+
+
+  constructor(@Inject(forwardRef(() => LaunchPageComponent)) private _parent: LaunchPageComponent) {
+    this.parentElement = _parent;
+  }
 
   ngOnInit(){
     if(this.questionnaire != undefined && this.questionnaire.questions.length > 0){

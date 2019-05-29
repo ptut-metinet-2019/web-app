@@ -2,8 +2,6 @@
   <div class="headContent">
     <span class="questionnaireNameLabel">{{questionnaire.title}}</span>
 
-    <img src="" alt="[IMG_PAUSE]" *ngIf="!isPaused && !isStoped" (click)="pause()">
-    <img src="" alt="[IMG_RESUME]" *ngIf="isPaused" (click)="resume()">
     <img src="" alt="[IMG_STOP]" *ngIf="!isStoped" (click)="stop()">
     <img src="" alt="[IMG_DASHBOARD]" *ngIf="isStoped" [routerLink]="['/dashboard']">
   </div>
