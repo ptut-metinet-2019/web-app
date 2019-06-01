@@ -3,8 +3,8 @@
 
   <span class="questionLabel">{{question.title}}</span>
 
-  <ng-container *ngFor="let choice of question.choices">
-    <div class="propositionLabel">Réponse : {{choice.title}}</div>
+  <ng-container *ngFor="let choice of question.choices; let i = index">
+    <div class="propositionLabel">Réponse <span class="gras">{{i+1}}</span> : {{choice.title}}</div>
   </ng-container>
 
   <div>

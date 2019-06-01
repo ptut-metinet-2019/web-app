@@ -54,6 +54,9 @@ export class QuestionListComponent implements OnInit {
   }
 
   public addingQuestionCallback(question: any){
+    if(this.questionnaire.questions == undefined){
+      this.questionnaire.questions = [];
+    }
     this.questionnaire.questions.push(Question.fromJSONObject(question));
     this.selectedQuestion = question;
   }
